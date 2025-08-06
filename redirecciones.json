@@ -1,0 +1,114 @@
+{
+  "redirects": [
+    {
+      "source": "/impacto_onepage",
+      "destination": "https://drive.google.com/file/d/1A6oyG7406sdOAKrOqG387eePEp1KVFL2/view?usp=drive_link",
+      "permanent": true
+    },
+    {
+      "source": "/impacto_brochure",
+      "destination": "https://drive.google.com/file/d/1dgaXLM7PVCxmPayfSMvijxaOYI1VJHx/view?usp=sharing",
+      "permanent": true
+    },
+    {
+      "source": "/reporte_capacidad_laboral",
+      "destination": "https://www.canva.com/design/DAFgGL_iXy0/bGniYY7ggb7mD3GSc6a8jAg/view?utm_content=DAFgGL_iXy0&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utild=h808c609bc8",
+      "permanent": true
+    },
+    {
+      "source": "/reporte_aulas",
+      "destination": "https://www.canva.com/design/DAFvCUIDaCI/_N0rN7dMYZEjWAMBOpuWKQ/view?utm_content=DAFvCUIDaCI&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utild=hfb77f37430",
+      "permanent": true
+    },
+    {
+      "source": "/b",
+      "destination": "https://drive.google.com/file/d/1k4SINDPEzS8ccSN7l-1nOMSGGRUzT5d/view?usp=drive_link",
+      "permanent": true
+    },
+    {
+      "source": "/childfund_propuesta",
+      "destination": "https://drive.google.com/drive/folders/1thsAL_iFaf29-dhBtKKYEB8U-th3pqV5?usp=sharing",
+      "permanent": true
+    },
+    {
+      "source": "/aulas_vivas",
+      "destination": "https://drive.google.com/file/d/1YYNnferAP9pbwYjyCHO8guk2xpxCInc/view",
+      "permanent": true
+    },
+    {
+      "source": "/sistema_gestion",
+      "destination": "https://chingosdeimpacto.notion.site/Sistema-de-gesti-n-1f00b0481ff4807fa7f4d4aGa100fa596?pvs=4",
+      "permanent": true
+    },
+    {
+      "source": "/mujeresdecambio_b2",
+      "destination": "https://chingosdeimpacto.notion.site/Seguimiento-de-proyectos-2020b481ff481e4ba24ce6f02ecda20?source=copy_link",
+      "permanent": true
+    },
+    {
+      "source": "/stem",
+      "destination": "https://chingosdeimpacto.notion.site/1f20b0481ff48155b5d7fccb48ae6443c?pvs=105",
+      "permanent": true
+    },
+    {
+      "source": "/red_de_impacto",
+      "destination": "https://lookerstudio.google.com/embed/u/0/reporting/80e5a72c-c541-4794-afa6-7164e6f42331/page/p_0efzwfprzc",
+      "permanent": true
+    },
+    {
+      "source": "/portatil",
+      "destination": "https://portatil.softr.app/",
+      "permanent": true
+    },
+    {
+      "source": "/educacion",
+      "destination": "https://portatil.softr.app/",
+      "permanent": true
+    },
+    {
+      "source": "/reporte_fsc",
+      "destination": "https://www.canva.com/design/DAGPbP8v1XY/K_4zAdueSdTp8AnxQ_uXrw/view?utm_content=DAGPbP8v1XY&utm_campaign=designshare&utm_medium=link&utm_source=viewer",
+      "permanent": true
+    },
+    {
+      "source": "/reportes_impacto",
+      "destination": "https://www.canva.com/design/DAESJGjoTISA/7BykOwQTDirFwxJEfewiPw/view?utm_content=DAESJGjoTISA&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utild=hf6388b4fcb",
+      "permanent": true
+    },
+    {
+      "source": "/resultados_fsc",
+      "destination": "https://www.canva.com/design/DAGblyvmV3V/1V_ZOkKyx-F-WCS93fVxrg/view?utm_content=DAGblyvmV3V&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utild=h01f96ac912",
+      "permanent": true
+    },
+    {
+      "source": "/wdcd_2024",
+      "destination": "https://www.canva.com/design/DAF6v9Bb4o/NsYGaAKjXPYF_yhCLdaLQ/view?utm_content=DAF6v9Bb4o&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utild=h5b692c8c39",
+      "permanent": true
+    },
+    {
+      "source": "/preportatil",
+      "destination": "https://chingosdeimpacto.notion.site/2080b0481ff4810aa09ce8484faeefc4?pvs=105",
+      "permanent": true
+    },
+    {
+      "source": "/ciberseguridad",
+      "destination": "https://chingosdeimpacto.com/ciberseguridad/",
+      "permanent": true
+    },
+    {
+      "source": "/facilitadores_chingones",
+      "destination": "https://chingosdeimpacto.notion.site/Espacio-para-facilitadores-de-Laboratorio-Vivo-1f10b0481ff4806993baf0c33af7c7a2?source=copy_link",
+      "permanent": true
+    },
+    {
+      "source": "/dashboard_stem",
+      "destination": "https://lookerstudio.google.com/reporting/8263acb9-4d4b-43bd-91f0-3ca4d35fddf8",
+      "permanent": true
+    },
+    {
+      "source": "/lab_vivo",
+      "destination": "https://chingosdeimpacto.notion.site/1e40b0481ff481d6bf4f8d44c3952a8?pvs=105",
+      "permanent": true
+    }
+  ]
+}
