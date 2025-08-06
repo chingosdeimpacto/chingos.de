@@ -1,9 +1,9 @@
 {
   "redirects": [
     {
-    "source": "/",
-    "destination": "https://chingosdeimpacto.com",
-    "permanent": true
+      "source": "/",
+      "destination": "https://chingosdeimpacto.com",
+      "permanent": true
     },
     {
       "source": "/impacto_onepage",
