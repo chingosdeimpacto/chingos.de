@@ -1,6 +1,11 @@
 {
   "redirects": [
     {
+    "source": "/",
+    "destination": "https://chingosdeimpacto.com",
+    "permanent": true
+    },
+    {
       "source": "/impacto_onepage",
       "destination": "https://drive.google.com/file/d/1A6oyG7406sdOAKrOqG387eePEp1KVFL2/view?usp=drive_link",
       "permanent": true
