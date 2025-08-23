@@ -111,6 +111,11 @@
       "permanent": true
     },
     {
+      "source": "/prompts",
+      "destination": "https://chingos-de-impacto.web.app/prompts",
+      "permanent": true
+    },
+    {
       "source": "/lab_vivo",
       "destination": "https://chingosdeimpacto.notion.site/1e40b0481ff481d6bf4f8d44c3952a8?pvs=105",
       "permanent": true
