@@ -122,12 +122,12 @@
     },
     {
       "source": "/mapa_empatia",
-      "destination": "https://www.canva.com/design/DAGw0uNF7bo/TEfRw0ElWixQEeCJJdYcIg/edit?utm_content=DAGw0uNF7bo&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton",
+      "destination": "https://claude.ai/public/artifacts/472b9bd5-e0f3-417f-a87e-22bd68632bc5",
       "permanent": true
     },
-    {
+    { 
       "source": "/lab_vivo",
-      "destination": "https://claude.ai/public/artifacts/472b9bd5-e0f3-417f-a87e-22bd68632bc5",
+      "destination": "https://chingosdeimpacto.notion.site/1e40b0481ff481d6bf4f8d44c3952a8?pvs=105",
       "permanent": true
     }
   ]
