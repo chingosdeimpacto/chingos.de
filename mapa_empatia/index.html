@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa de Empatía</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #333;
+            margin: 0 0 10px 0;
+        }
+
+        .persona-info {
+            background: #e8f4fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .persona-info input {
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            background: transparent;
+            text-align: center;
+            width: 300px;
+            padding: 5px;
+            border-bottom: 2px dashed #007bff;
+        }
+
+        .empathy-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr 1fr;
+            gap: 15px;
+            min-height: 600px;
+        }
+
+        .section {
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            position: relative;
+        }
+
+        .section h3 {
+            margin: 0 0 10px 0;
+            padding: 8px 15px;
+            border-radius: 20px;
+            color: white;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .thinks { background-color: #ff6b6b; }
+        .sees { background-color: #4ecdc4; }
+        .says { background-color: #45b7d1; }
+        .does { background-color: #96ceb4; }
+        .pains { background-color: #feca57; }
+        .gains { background-color: #ff9ff3; }
+
+        .section textarea {
+            width: 100%;
+            height: 120px;
+            border: none;
+            resize: none;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            padding: 10px;
+            background: #fafafa;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .section textarea:focus {
+            outline: 2px solid #007bff;
+            background: white;
+        }
+
+        .instructions {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #007bff;
+        }
+
+        .instructions h3 {
+            margin: 0 0 15px 0;
+            color: #007bff;
+        }
+
+        .instructions ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .instructions li {
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .download-btn {
+            display: block;
+            margin: 30px auto;
+            padding: 15px 30px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .download-btn:hover {
+            background: #0056b3;
+        }
+
+        .download-btn:active {
+            transform: translateY(1px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Mapa de Empatía</h1>
+            <div class="persona-info">
+                <label>Persona/Usuario: </label>
+                <input type="text" id="persona" placeholder="Nombre de la persona o segmento">
+            </div>
+        </div>
+
+        <div class="instructions">
+            <h3>📋 Instrucciones de llenado</h3>
+            <ul>
+                <li><strong>Piensa y siente:</strong> Emociones, preocupaciones, sueños y aspiraciones</li>
+                <li><strong>Ve:</strong> Lo que observa en su entorno, influencias visuales, tendencias</li>
+                <li><strong>Dice y hace:</strong> Comportamientos públicos, acciones, actitud hacia otros</li>
+                <li><strong>Hace:</strong> Acciones concretas, comportamientos observables</li>
+                <li><strong>Dolores:</strong> Frustraciones, obstáculos, riesgos que teme</li>
+                <li><strong>Beneficios:</strong> Necesidades, deseos, medidas de éxito, obstáculos</li>
+            </ul>
+        </div>
+
+        <div id="empathy-map" class="empathy-grid">
+            <div class="section">
+                <h3 class="thinks">💭 Piensa y siente</h3>
+                <textarea placeholder="¿Qué piensa realmente? ¿Cuáles son sus emociones? ¿Qué la mueve? ¿Cuáles son sus principales preocupaciones y aspiraciones?"></textarea>
+            </div>
+
+            <div class="section">
+                <h3 class="sees">👁️ Ve</h3>
+                <textarea placeholder="¿Qué ve en el mercado? ¿Qué ve en su entorno inmediato? ¿A qué tipo de ofertas está expuesto? ¿Cuáles son los problemas que enfrenta?"></textarea>
+            </div>
+
+            <div class="section">
+                <h3 class="says">💬 Dice y hace</h3>
+                <textarea placeholder="¿Qué dice? ¿Cuál es su actitud habitual? ¿Qué podría estar contando a otros? ¿Hay inconsistencias entre lo que dice y lo que piensa?"></textarea>
+            </div>
+
+            <div class="section">
+                <h3 class="does">🏃 Hace</h3>
+                <textarea placeholder="¿Qué hace hoy? ¿Cuál es su comportamiento? ¿Cuáles son sus aficiones? ¿Cómo se comporta?"></textarea>
+            </div>
+
+            <div class="section">
+                <h3 class="pains">😫 Dolores</h3>
+                <textarea placeholder="¿Cuáles son sus frustraciones? ¿Qué obstáculos encuentra? ¿Qué riesgos teme asumir? ¿Qué le quita el sueño?"></textarea>
+            </div>
+
+            <div class="section">
+                <h3 class="gains">🎯 Beneficios</h3>
+                <textarea placeholder="¿Qué quiere conseguir realmente? ¿Cómo mide el éxito? ¿Cuáles son sus principales necesidades? ¿Qué le haría feliz?"></textarea>
+            </div>
+        </div>
+
+        <button class="download-btn" onclick="downloadMap()">📱 Descargar como Imagen</button>
+    </div>
+
+    <script>
+        async function downloadMap() {
+            const button = document.querySelector('.download-btn');
+            const originalText = button.textContent;
+
+            // Cambiar texto del botón
+            button.textContent = '📸 Generando imagen...';
+            button.disabled = true;
+
+            try {
+                // Ocultar temporalmente el botón para la captura
+                button.style.display = 'none';
+
+                const canvas = await html2canvas(document.querySelector('.container'), {
+                    backgroundColor: '#ffffff',
+                    scale: 2,
+                    useCORS: true,
+                    allowTaint: false
+                });
+
+                // Mostrar el botón nuevamente
+                button.style.display = 'block';
+
+                // Crear enlace de descarga
+                const link = document.createElement('a');
+                link.download = `mapa-empatia-${new Date().toISOString().split('T')[0]}.png`;
+                link.href = canvas.toDataURL('image/png');
+
+                // Descargar
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+
+            } catch (error) {
+                alert('Error al generar la imagen. Inténtalo de nuevo.');
+                console.error('Error:', error);
+            } finally {
+                // Restaurar botón
+                button.textContent = originalText;
+                button.disabled = false;
+            }
+        }
+
+        // Auto-expandir textareas
+        document.querySelectorAll('textarea').forEach(textarea => {
+            textarea.addEventListener('input', function() {
+                this.style.height = 'auto';
+                this.style.height = Math.max(120, this.scrollHeight) + 'px';
+            });
+        });
+    </script>
+</body>
+</html>
