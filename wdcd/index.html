@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Chingos de Impacto - Manifiesto Chingón</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #FFF9E6;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Logo Header */
+        .logo-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            margin-bottom: 20px;
+        }
+
+        .logo-wdcd {
+            font-size: 18px;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            text-transform: uppercase;
+            color: black;
+        }
+
+        .logo-chingos {
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .logo-chingos-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: black;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-size: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #FF0000, #FF6B35);
+            color: white;
+            padding: 30px 20px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(255, 61, 0, 0.3);
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            opacity: 0.95;
+            font-weight: 500;
+        }
+
+        /* Instructions Box */
+        .instructions {
+            background: #FFEB3B;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            border: 3px solid #FF0000;
+        }
+
+        .instructions h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+            font-weight: 800;
+            color: #FF0000;
+            text-transform: uppercase;
+        }
+
+        .instructions p {
+            line-height: 1.6;
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .instructions .cta {
+            background: #FF0000;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        /* Wheel Container */
+        .wheel-container {
+            background: white;
+            border-radius: 25px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .wheel-wrapper {
+            position: relative;
+            width: 280px;
+            height: 280px;
+            margin: 0 auto 20px;
+        }
+
+        .wheel {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 0 8px #fff, 0 0 0 10px #ddd, 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .section {
+            position: absolute;
+            width: 50%;
+            height: 50%;
+            transform-origin: right bottom;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .section span {
+            position: absolute;
+            font-size: 24px;
+            font-weight: bold;
+            transform: rotate(-45deg);
+            left: 15%;
+            top: 15%;
+        }
+
+        /* Wheel sections colors matching the original */
+        .section:nth-child(1) { background: #FFB3BA; transform: rotate(0deg); }
+        .section:nth-child(2) { background: #BAE1FF; transform: rotate(45deg); }
+        .section:nth-child(3) { background: #FFFFBA; transform: rotate(90deg); }
+        .section:nth-child(4) { background: #BAFFC9; transform: rotate(135deg); }
+        .section:nth-child(5) { background: #FFDFBA; transform: rotate(180deg); }
+        .section:nth-child(6) { background: #E0BBE4; transform: rotate(225deg); }
+        .section:nth-child(7) { background: #C7CEEA; transform: rotate(270deg); }
+        .section:nth-child(8) { background: #B5EAD7; transform: rotate(315deg); }
+
+        .pointer {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-top: 40px solid black;
+            z-index: 10;
+            filter: drop-shadow(0 3px 5px rgba(0,0,0,0.3));
+        }
+
+        .spin-button {
+            background: black;
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            font-size: 18px;
+            font-weight: 800;
+            border-radius: 50px;
+            cursor: pointer;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .spin-button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            background: #333;
+        }
+
+        .spin-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .spin-counter {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 16px;
+            color: #666;
+            font-weight: 600;
+        }
+
+        /* Cards Display - Matching exact design */
+        .cards-container {
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 0;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            animation: slideIn 0.5s ease;
+            position: relative;
+        }
+
+        /* Halftone pattern overlay */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, #FF0000 20%, transparent 20%);
+            background-size: 10px 10px;
+            opacity: 0.03;
+            transform: rotate(45deg);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card-top-header {
+            background: #FFEB3B;
+            padding: 8px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .card-brand {
+            color: #FF0000;
+        }
+
+        .card-org {
+            color: black;
+        }
+
+        .card-content {
+            padding: 30px 25px;
+        }
+
+        .card-title {
+            color: #FF0000;
+            font-size: 32px;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .card-description {
+            color: black;
+            line-height: 1.5;
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+        .card-number-large {
+            font-size: 120px;
+            font-weight: 900;
+            color: black;
+            opacity: 0.08;
+            position: absolute;
+            bottom: -30px;
+            right: 20px;
+            line-height: 1;
+        }
+
+        .card-footer {
+            padding: 0 25px 25px;
+            font-size: 14px;
+            color: #FF0000;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        /* Notes Section */
+        .notes-section {
+            background: white;
+            border-radius: 25px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .notes-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: #FF0000;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .note-input {
+            width: 100%;
+            padding: 15px;
+            border: 3px solid #FFEB3B;
+            border-radius: 15px;
+            font-size: 14px;
+            margin-bottom: 15px;
+            resize: vertical;
+            min-height: 80px;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        .note-input:focus {
+            outline: none;
+            border-color: #FF0000;
+        }
+
+        .generate-button {
+            background: #FF0000;
+            color: white;
+            border: none;
+            padding: 18px 30px;
+            font-size: 18px;
+            font-weight: 800;
+            border-radius: 50px;
+            cursor: pointer;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            box-shadow: 0 5px 15px rgba(255, 61, 0, 0.3);
+        }
+
+        .generate-button:hover {
+            background: #D32F2F;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 61, 0, 0.4);
+        }
+
+        /* Manifesto Result */
+        .manifesto-result {
+            display: none;
+            background: white;
+            border-radius: 25px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .manifesto-canvas {
+            background: #FFEB3B;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .manifesto-header {
+            background: #FF0000;
+            color: white;
+            margin: -30px -30px 20px;
+            padding: 25px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+        }
+
+        .manifesto-logos {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .manifesto-content {
+            color: #333;
+            line-height: 1.8;
+        }
+
+        .manifesto-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            border-left: 5px solid #FF0000;
+        }
+
+        .manifesto-label {
+            font-weight: 800;
+            color: #FF0000;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .share-button {
+            background: #FF0000;
+            color: white;
+            border: none;
+            padding: 18px 30px;
+            font-size: 18px;
+            font-weight: 800;
+            border-radius: 50px;
+            cursor: pointer;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 61, 0, 0.3);
+        }
+
+        .share-button:hover {
+            background: #D32F2F;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 61, 0, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            margin-top: 40px;
+        }
+
+        .footer a {
+            color: #FF0000;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Hidden canvas for image generation */
+        #hiddenCanvas {
+            display: none;
+        }
+
+        /* Mobile optimizations */
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+
+            .logo-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .wheel-wrapper {
+                width: 240px;
+                height: 240px;
+            }
+
+            .card-title {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Logo Header -->
+        <div class="logo-header">
+            <div class="logo-wdcd">
+               <!-- WHAT DESIGN CAN DO<br>
+                MEXICO 🌵 GNP -->
+                <img src="images/wdcd.png" alt="What Design Can Do" style="height: 40px;">
+                <img src="images/cdi.png" alt="What Design Can Do" style="height: 40px;">
+            </div>
+            <div class="logo-chingos">
+                <div class="logo-chingos-icon">👌</div>
+                <div>CHINGOS<br>DE IMPACTO</div>
+            </div>
+        </div>
+
+        <div class="header">
+            <h1>Manifiesto Chingón</h1>
+            <div class="subtitle">Inteligencia Colectiva de Impacto</div>
+        </div>
+
+        <div class="instructions">
+            <h3>🎯 ¿CÓMO FUNCIONA?</h3>
+            <p><strong>PASO 1:</strong> Gira la ruleta 3 veces. Cada giro te dará una carta diferente:</p>
+            <p>• Primera carta: <strong>LA NETA</strong> - Un principio fundamental de impacto</p>
+            <p>• Segunda carta: <strong>Y SÍ...</strong> - Una mentalidad disruptiva</p>
+            <p>• Tercera carta: <strong>ÁMONOS</strong> - Un compromiso concreto</p>
+
+            <p><strong>PASO 2:</strong> Reflexiona sobre cada carta y escribe cómo las aplicarás a tu proyecto o vida.</p>
+
+            <p><strong>PASO 3:</strong> Genera tu Manifiesto Chingón personalizado y descárgalo como imagen.</p>
+
+            <div class="cta">
+                📱 Comparte tu manifiesto en RRSS y <br>
+                etiqueta a <strong>@chingosdeimpacto</strong> y <strong>@wdcdmxgnp</strong><br>
+
+            </div>
+        </div>
+
+        <div class="wheel-container">
+            <div class="wheel-wrapper">
+                <div class="pointer"></div>
+                <div class="wheel" id="wheel">
+                    <div class="section"><span>1</span></div>
+                    <div class="section"><span>2</span></div>
+                    <div class="section"><span>3</span></div>
+                    <div class="section"><span>4</span></div>
+                    <div class="section"><span>5</span></div>
+                    <div class="section"><span>6</span></div>
+                    <div class="section"><span>7</span></div>
+                    <div class="section"><span>8</span></div>
+                </div>
+            </div>
+            <button class="spin-button" id="spinButton">▶ Spin</button>
+            <div class="spin-counter" id="spinCounter">Giros disponibles: 3</div>
+        </div>
+
+        <div class="cards-container" id="cardsContainer" style="display: none;">
+            <div id="cardsDisplay"></div>
+        </div>
+
+        <div class="notes-section" id="notesSection" style="display: none;">
+            <div class="notes-title">✍️ Crea tu Manifiesto Personal</div>
+
+            <textarea class="note-input" placeholder="Mi PRINCIPIO (La Neta): ¿Cuál es mi principio fundamental de impacto?" id="principle"></textarea>
+
+            <textarea class="note-input" placeholder="Mi MENTALIDAD (Y sí...): ¿Qué mentalidad adoptaré para generar cambio?" id="mentality"></textarea>
+
+            <textarea class="note-input" placeholder="Mi COMPROMISO (Ámonos): ¿A qué me comprometo hoy mismo?" id="commitment"></textarea>
+
+            <button class="generate-button" onclick="generateManifesto()">🚀 GENERAR MI MANIFIESTO</button>
+        </div>
+
+        <div class="manifesto-result" id="manifestoResult">
+            <div class="manifesto-canvas" id="manifestoCanvas">
+                <div class="manifesto-header">MANIFIESTO CHINGÓN</div>
+                <div class="manifesto-logos">
+                    <div style="font-size: 12px; font-weight: 900;">WHAT DESIGN CAN DO</div>
+                    <div style="font-size: 12px; font-weight: 800;">CHINGOS DE IMPACTO</div>
+                </div>
+                <div class="manifesto-content" id="manifestoContent"></div>
+            </div>
+            <button class="share-button" onclick="createAndDownloadImage()">📱 DESCARGAR PARA INSTAGRAM</button>
+        </div>
+
+        <div class="footer">
+            <a href="https://www.instagram.com/chingosdeimpacto/" target="_blank">
+                Creado por Chingos de Impacto® 2025
+            </a>
+        </div>
+    </div>
+
+    <!-- Hidden canvas for image generation -->
+    <canvas id="hiddenCanvas"></canvas>
+
+    <script>
+        // HTML2Canvas implementation inline to ensure it works
+        function createAndDownloadImage() {
+            // Create a new canvas element
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+
+            // Set dimensions for Instagram Story
+            const width = 1080;
+            const height = 1350;
+            canvas.width = width;
+            canvas.height = height;
+
+            // Draw yellow background
+            ctx.fillStyle = '#FFEB3B';
+            ctx.fillRect(0, 0, width, height);
+
+            // Draw red header
+            ctx.fillStyle = '#FF0000';
+            ctx.fillRect(0, 0, width, 100);
+
+            // Header text
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 48px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('MANIFIESTO CHINGÓN', width/2, 65);
+
+            // Draw logos section
+            ctx.fillStyle = 'white';
+            ctx.fillRect(40, 120, width - 80, 80);
+
+            // Logo texts
+            ctx.fillStyle = 'black';
+            ctx.font = 'bold 24px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('WHAT DESIGN CAN DO', 60, 165);
+            ctx.textAlign = 'right';
+            ctx.fillText('CHINGOS DE IMPACTO', width - 60, 165);
+
+            // Get user data
+            const principle = document.getElementById('principle') ? document.getElementById('principle').value : '';
+            const mentality = document.getElementById('mentality') ? document.getElementById('mentality').value : '';
+            const commitment = document.getElementById('commitment') ? document.getElementById('commitment').value : '';
+
+            let yPosition = 240;
+
+            // Draw selected cards if they exist
+            if (typeof selectedCards !== 'undefined' && selectedCards.length > 0) {
+                const cardTypes = ['LA NETA', 'Y SÍ...', 'ÁMONOS'];
+
+                for (let i = 0; i < selectedCards.length; i++) {
+                    // Draw white box
+                    ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+                    ctx.fillRect(40, yPosition, width - 80, 120);
+
+                    // Draw red accent
+                    ctx.fillStyle = '#FF0000';
+                    ctx.fillRect(40, yPosition, 8, 120);
+
+                    // Draw card type
+                    ctx.fillStyle = '#FF0000';
+                    ctx.font = 'bold 18px Arial';
+                    ctx.textAlign = 'left';
+                    ctx.fillText('CARTA ' + (i + 1) + ': ' + cardTypes[i], 60, yPosition + 30);
+
+                    // Draw card title
+                    ctx.fillStyle = 'black';
+                    ctx.font = 'bold 22px Arial';
+                    const title = selectedCards[i].title || '';
+                    ctx.fillText(title.substring(0, 40), 60, yPosition + 65);
+
+                    yPosition += 140;
+                }
+            }
+
+            // Draw user inputs
+            const userInputs = [
+                { label: 'MI PRINCIPIO', text: principle },
+                { label: 'MI MENTALIDAD', text: mentality },
+                { label: 'MI COMPROMISO', text: commitment }
+            ];
+
+            for (let input of userInputs) {
+                // Draw white box
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+                ctx.fillRect(40, yPosition, width - 80, 120);
+
+                // Draw red accent
+                ctx.fillStyle = '#FF0000';
+                ctx.fillRect(40, yPosition, 8, 120);
+
+                // Draw label
+                ctx.fillStyle = '#FF0000';
+                ctx.font = 'bold 18px Arial';
+                ctx.textAlign = 'left';
+                ctx.fillText(input.label, 60, yPosition + 30);
+
+                // Draw text with simple wrap
+                ctx.fillStyle = 'black';
+                ctx.font = '20px Arial';
+                const text = input.text || 'No especificado';
+                const shortText = text.length > 80 ? text.substring(0, 77) + '...' : text;
+                ctx.fillText(shortText, 60, yPosition + 65);
+
+                yPosition += 140;
+            }
+
+            // Draw footer line
+            ctx.strokeStyle = '#FF0000';
+            ctx.lineWidth = 2;
+            ctx.setLineDash([10, 10]);
+            ctx.beginPath();
+            ctx.moveTo(40, yPosition + 20);
+            ctx.lineTo(width - 40, yPosition + 20);
+            ctx.stroke();
+
+            // Draw footer text
+            ctx.setLineDash([]);
+            ctx.fillStyle = '#FF0000';
+            ctx.font = 'bold 32px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('Está chingón generar impacto', width/2, yPosition + 70);
+
+            // Add social media tags
+            ctx.font = '20px Arial';
+            ctx.fillText('@chingosdeimpacto @wdcdmxgnp', width/2, yPosition + 110);
+
+            // Create download link
+            const dataURL = canvas.toDataURL('image/png');
+            const downloadLink = document.createElement('a');
+            downloadLink.href = dataURL;
+            downloadLink.download = 'manifiesto-chingon.png';
+
+            // Trigger download
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            document.body.removeChild(downloadLink);
+
+            alert('¡Manifiesto descargado exitosamente! 🎉\nListo para compartir en Instagram');
+        }
+
+        const cards = {
+            neta: [
+                {
+                    title: "EL NOPAL EN LA SALA",
+                    description: "Identifica el problema obvio que todos ignoran por incómodo.",
+                    meta: "LA NETA"
+                },
+                {
+                    title: "EL MOLE DE LA ABUELA",
+                    description: "Busca la causa raíz, la receta secreta que explica por qué las cosas son como son.",
+                    meta: "LA NETA"
+                },
+                {
+                    title: "LO QUE SE DICE EN EL CAFECITO",
+                    description: "Verbaliza las reglas no escritas y las verdades que solo se admiten en confianza.",
+                    meta: "LA NETA"
+                },
+                {
+                    title: "¿DÓNDE APRIETA EL ZAPATO?",
+                    description: "Define con precisión el dolor o la fricción real que siente el usuario/comunidad.",
+                    meta: "LA NETA"
+                },
+                {
+                    title: "EL 'AHORITA LO VEMOS'",
+                    description: "Saca a la luz esa tarea o decisión crucial que se ha estado posponiendo.",
+                    meta: "LA NETA"
+                },
+                {
+                    title: "¿Y SI ES PURO CHORO?",
+                    description: "Cuestiona la suposición más grande que sostiene el proyecto. ¿Qué pasa si es falsa?",
+                    meta: "LA NETA"
+                },
+                {
+                    title: "EL 'NO TE QUEMES'",
+                    description: "Expresa el miedo o riesgo principal que está paralizando la toma de decisiones.",
+                    meta: "LA NETA"
+                },
+                {
+                    title: "EL 'YA MERITO'",
+                    description: "Identifica esa meta que siempre está a punto de lograrse pero nunca se concreta. ¿Por qué?",
+                    meta: "LA NETA"
+                }
+            ],
+            ysi: [
+                {
+                    title: "LA ALIANZA CON DOÑA PELOS",
+                    description: "Imagina una colaboración con el aliado más inesperado y fuera de tu sector.",
+                    meta: "Y SÍ..."
+                },
+                {
+                    title: "CONTARLO COMO UN MEME",
+                    description: "Sintetiza tu propuesta de valor en una imagen y una frase que se pueda viralizar.",
+                    meta: "Y SÍ..."
+                },
+                {
+                    title: "LA VISIÓN DE TELENOVELA",
+                    description: "Imagina el arco dramático del proyecto: el villano, el héroe, el conflicto y el final feliz.",
+                    meta: "Y SÍ..."
+                },
+                {
+                    title: "Y SÍ... ¿SE VA LA LUZ Y EL INTERNET?",
+                    description: "Diseña una versión de la solución que funcione de manera 100% análoga.",
+                    meta: "Y SÍ..."
+                },
+                {
+                    title: "DISEÑARLO PARA EL MÁS GANDALLA",
+                    description: "Piensa en cómo el usuario más tramposo o abusivo podría explotar tu sistema.",
+                    meta: "Y SÍ..."
+                },
+                {
+                    title: "EL EFECTO CEMPASÚCHIL",
+                    description: "¿Qué camino o guía visual puedes crear para que la gente llegue a tu solución?",
+                    meta: "Y SÍ..."
+                },
+                {
+                    title: "EL DOBLE SENTIDO",
+                    description: "Juega con el nombre o la descripción de tu idea para que sea más 'alburera' y memorable.",
+                    meta: "Y SÍ..."
+                },
+                {
+                    title: "VOLTEAR LA TORTILLA",
+                    description: "Plantea el problema y la solución completamente al revés. ¿Qué pasaría?",
+                    meta: "Y SÍ..."
+                }
+            ],
+            amonos: [
+                {
+                    title: "EL PRIMER PASO, EN CORTO",
+                    description: "Define la acción más pequeña y significativa que se puede hacer en 24 horas.",
+                    meta: "ÁMONOS"
+                },
+                {
+                    title: "EL 'ÉCHAME LA MANO'",
+                    description: "Identifica a UNA persona a la que se le pedirá una ayuda específica y concreta.",
+                    meta: "ÁMONOS"
+                },
+                {
+                    title: "LA PRUEBA DEL CHANGARRO",
+                    description: "Crea un experimento simple para validar tu idea con un cliente real en la calle.",
+                    meta: "ÁMONOS"
+                },
+                {
+                    title: "QUIEN JALA",
+                    description: "Forma el equipo mínimo viable. ¿Quiénes son las 2-3 personas que se comprometen?",
+                    meta: "ÁMONOS"
+                },
+                {
+                    title: "EL LETRERO DE 'PRÓXIMAMENTE'",
+                    description: "Crea una página de destino o un anuncio simple para medir el interés real del público.",
+                    meta: "ÁMONOS"
+                },
+                {
+                    title: "LA TALACHA QUE NADIE QUIERE",
+                    description: "Identifica y asigna esa tarea operativa pero fundamental que todos evitan.",
+                    meta: "ÁMONOS"
+                },
+                {
+                    title: "¿QUIÉN ES EL PRIMER VALIENTE?",
+                    description: "Encuentra y asegura a tu primer usuario, cliente o beneficiario dispuesto a probar.",
+                    meta: "ÁMONOS"
+                },
+                {
+                    title: "EL CORREO QUE LO CAMBIA TODO",
+                    description: "Redacta el correo electrónico (a un inversionista, a un aliado, etc.) que necesitas enviar YA.",
+                    meta: "ÁMONOS"
+                }
+            ]
+        };
+
+        let spinsLeft = 3;
+        let currentRotation = 0;
+        let selectedCards = [];
+        let isSpinning = false;
+
+        document.getElementById('spinButton').addEventListener('click', spinWheel);
+
+        function spinWheel() {
+            if (spinsLeft <= 0 || isSpinning) return;
+
+            isSpinning = true;
+            const wheel = document.getElementById('wheel');
+            const spinButton = document.getElementById('spinButton');
+
+            spinButton.disabled = true;
+
+            const randomSpin = Math.floor(Math.random() * 360) + 1440;
+            currentRotation += randomSpin;
+
+            wheel.style.transform = `rotate(${currentRotation}deg)`;
+
+            setTimeout(() => {
+                const normalizedAngle = currentRotation % 360;
+                const sectionAngle = 45;
+                const selectedSection = Math.floor(((360 - normalizedAngle + 22.5) % 360) / sectionAngle) + 1;
+
+                let cardType, cardArray;
+                if (spinsLeft === 3) {
+                    cardType = 'LA NETA';
+                    cardArray = cards.neta;
+                } else if (spinsLeft === 2) {
+                    cardType = 'Y SÍ...';
+                    cardArray = cards.ysi;
+                } else {
+                    cardType = 'ÁMONOS';
+                    cardArray = cards.amonos;
+                }
+
+                const selectedCard = cardArray[selectedSection - 1];
+                selectedCards.push(selectedCard);
+
+                displayCard(selectedCard, 4 - spinsLeft);
+
+                spinsLeft--;
+                updateCounter();
+
+                if (spinsLeft === 0) {
+                    document.getElementById('notesSection').style.display = 'block';
+                    spinButton.textContent = '✅ COMPLETADO';
+                } else {
+                    spinButton.disabled = false;
+                }
+
+                isSpinning = false;
+            }, 4000);
+        }
+
+        function displayCard(card, cardNumber) {
+            const container = document.getElementById('cardsContainer');
+            const display = document.getElementById('cardsDisplay');
+
+            container.style.display = 'block';
+
+            const cardHTML = `
+                <div class="card">
+                    <div class="card-top-header">
+                        <span class="card-brand">CHINGOS DE IMPACTO</span>
+                        <span class="card-org">WHAT DESIGN CAN DO MEXICO 🌵 GNP</span>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">${card.title}</div>
+                        <div class="card-description">${card.description}</div>
+                        <div class="card-number-large">${cardNumber}</div>
+                    </div>
+                    <div class="card-footer">${card.meta}</div>
+                </div>
+            `;
+
+            display.innerHTML += cardHTML;
+        }
+
+        function updateCounter() {
+            const counter = document.getElementById('spinCounter');
+            if (spinsLeft === 0) {
+                counter.textContent = '¡Tienes tus 3 cartas!';
+            } else {
+                counter.textContent = `Giros disponibles: ${spinsLeft}`;
+            }
+        }
+
+        function generateManifesto() {
+            const principle = document.getElementById('principle').value;
+            const mentality = document.getElementById('mentality').value;
+            const commitment = document.getElementById('commitment').value;
+
+            if (!principle || !mentality || !commitment) {
+                alert('Por favor completa todos los campos para crear tu manifiesto');
+                return;
+            }
+
+            const manifestoContent = document.getElementById('manifestoContent');
+            const manifestoResult = document.getElementById('manifestoResult');
+
+            const cardsInfo = selectedCards.map((card, index) => {
+                const types = ['LA NETA', 'Y SÍ...', 'ÁMONOS'];
+                return `
+                    <div class="manifesto-item">
+                        <div class="manifesto-label">CARTA ${index + 1}: ${types[index]}</div>
+                        <strong>${card.title}</strong>
+                    </div>
+                `;
+            }).join('');
+
+            manifestoContent.innerHTML = `
+                ${cardsInfo}
+                <div class="manifesto-item">
+                    <div class="manifesto-label">MI PRINCIPIO</div>
+                    ${principle}
+                </div>
+                <div class="manifesto-item">
+                    <div class="manifesto-label">MI MENTALIDAD</div>
+                    ${mentality}
+                </div>
+                <div class="manifesto-item">
+                    <div class="manifesto-label">MI COMPROMISO</div>
+                    ${commitment}
+                </div>
+                <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 2px dashed #FF0000;">
+                    <strong style="color: #FF0000; font-size: 18px;">Está chingón generar impacto</strong>
+                </div>
+            `;
+
+            manifestoResult.style.display = 'block';
+            manifestoResult.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function downloadManifesto() {
+            const manifestoCanvas = document.getElementById('manifestoCanvas');
+
+            html2canvas(manifestoCanvas, {
+                backgroundColor: '#FFEB3B',
+                scale: 2,
+                logging: false,
+                useCORS: true
+            }).then(canvas => {
+                // Convert to PNG and download
+                const link = document.createElement('a');
+                link.download = 'manifiesto-chingon.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+
+                // Also offer to share if available
+                if (navigator.share) {
+                    canvas.toBlob(blob => {
+                        const file = new File([blob], 'manifiesto-chingon.png', { type: 'image/png' });
+                        navigator.share({
+                            title: 'Mi Manifiesto Chingón',
+                            text: '¡Soy un/a Chingón/a de Impacto! #ChingosDeImpacto #ManifiestoChingón @chingosdeimpacto',
+                            files: [file]
+                        }).catch(err => console.log('Error sharing', err));
+                    });
+                }
+            });
+        }
+    </script>
+</body>
+</html>
