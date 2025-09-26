@@ -1052,7 +1052,7 @@
                 const selectedCard = cardArray[selectedSection - 1];
                 selectedCards.push(selectedCard);
 
-                displayCard(selectedCard, 6 - spinsLeft);
+                displayCard(selectedCard, 5 - spinsLeft);
 
                 spinsLeft--;
                 updateCounter();
@@ -1089,7 +1089,7 @@
                 msg.classList.add('hidden');
             });
 
-            const remainingSpins = spinsLeft-1;
+            const remainingSpins = spinsLeft;
             const spinMessage = remainingSpins > 0 ?
                 `<div class="card-spin-message" id="spinMessage-${cardNumber}">
                     🎯 Gira la ruleta de nuevo - Faltan ${remainingSpins} giros
