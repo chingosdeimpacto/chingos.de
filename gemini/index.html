@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Completa: Educador Certificado Gemini</title>
+    <!-- Carga de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f1f5f9; /* Slate-100 for a light, professional background */
+        }
+        .gemini-blue {
+            background-color: #4285F4;
+        }
+        .gemini-green {
+            background-color: #34A853;
+        }
+        .gemini-red {
+            background-color: #EA4335;
+        }
+        .gemini-yellow {
+            background-color: #FBBC05;
+        }
+        .card {
+            /* Better shadow for a floating card effect */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        }
+        .nav-button {
+            /* Base style for tabs */
+            border-bottom: 3px solid transparent;
+            color: #4b5563; /* gray-600 */
+        }
+        .nav-button.active {
+            /* Active tab style */
+            color: #4285F4; /* Gemini Blue */
+            border-bottom-color: #4285F4;
+            font-weight: 600;
+        }
+        .option-button {
+            transition: all 0.2s;
+        }
+        .option-button:hover:not(.disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .correct {
+            background-color: #34A853 !important;
+            color: white !important;
+            border-color: #34A853 !important;
+        }
+        .incorrect {
+            background-color: #EA4335 !important;
+            color: white !important;
+            border-color: #EA4335 !important;
+        }
+        /* Custom styles for the breakdown section colors */
+        .color-1 { color: #EA4335; } /* Rojo - Fundamentos */
+        .color-2 { color: #FBBC05; } /* Amarillo - Ingeniería de prompts */
+        .color-3 { color: #34A853; } /* Verde - Integración en el aula */
+        .color-4 { color: #4285F4; } /* Azul - IA responsable y ética */
+        .color-5 { color: #1a73e8; } /* Azul oscuro - Herramientas avanzadas (Ajustado para un mejor contraste) */
+
+        /* Donut Chart Simulation */
+        .donut-chart-container {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: conic-gradient(
+                #EA4335 0 15%,     /* Fundamentos 15% */
+                #FBBC05 15% 35%,    /* Prompts 20% */
+                #34A853 35% 70%,    /* Integración 35% */
+                #4285F4 70% 85%,    /* Ética 15% */
+                #1a73e8 85% 100%    /* Avanzadas 15% */
+            );
+        }
+
+        .donut-chart-container::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 70%;
+            height: 70%;
+            background: #f1f5f9; /* Fondo body */
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+        }
+
+        .resource-link {
+            color: #4285F4;
+            font-weight: 500;
+            text-decoration: underline;
+        }
+        .resource-link:hover {
+            color: #1a73e8;
+        }
+
+        /* NEW Styles for the Clean Flow Steps (Tu Camino) */
+        .clean-flow-step {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+        .clean-flow-step:hover {
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+        .step-icon-container {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            flex-shrink: 0;
+            margin-right: 1rem;
+        }
+        .step-number {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        /* Specific colors for the clean flow */
+        .step-1 .step-icon-container { background-color: #ff8c00; } /* Naranja */
+        .step-2 .step-icon-container { background-color: #06b6d4; } /* Cian */
+        .step-3 .step-icon-container { background-color: #ec4899; } /* Rosa */
+        .step-4 .step-icon-container { background-color: #3b82f6; } /* Azul */
+
+        /* Responsive Flow Stack */
+        @media (min-width: 768px) {
+            .flow-grid {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <!-- Header con el logo de Gemini -->
+    <header class="bg-white card py-4 mb-8 sticky top-0 z-10 border-b border-gray-200">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
+            <!-- Gemini Logo SVG -->
+            <svg viewBox="0 0 32 32" fill="none" class="w-8 h-8 mr-3 flex-shrink-0" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16 0L0 16L16 32L32 16L16 0Z" fill="url(#paint0_linear_87_75)"/>
+                <defs>
+                    <linearGradient id="paint0_linear_87_75" x1="16" y1="0" x2="16" y2="32" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#4285F4"/>
+                        <stop offset="0.33" stop-color="#4285F4"/>
+                        <stop offset="0.66" stop-color="#4285F4"/>
+                        <stop offset="1" stop-color="#4285F4"/>
+                    </linearGradient>
+                </defs>
+            </svg>
+            <h1 class="text-2xl sm:text-3xl font-bold text-gray-800 truncate">Guía: Educador Certificado Gemini</h1>
+        </div>
+    </header>
+
+    <!-- Navegación principal (Pestañas/Tabs) -->
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mb-6 bg-white border-b border-gray-200 shadow-sm rounded-xl">
+        <div class="flex space-x-6 justify-center sm:justify-start">
+            <!-- Orden: Guía, Prompt, Simulacro -->
+            <button id="nav-guide" class="nav-button active px-4 py-3 text-sm transition duration-150 ease-in-out" onclick="showSection('guide')">La Guía Completa</button>
+            <button id="nav-prompt" class="nav-button px-4 py-3 text-sm transition duration-150 ease-in-out" onclick="showSection('prompt')">Prompt IA Guiado</button>
+            <button id="nav-quiz" class="nav-button px-4 py-3 text-sm transition duration-150 ease-in-out" onclick="showSection('quiz')">Simulacro de Examen</button>
+        </div>
+    </div>
+
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-10">
+        <!-- Anchor tags para enlaces internos -->
+        <a id="guia" class="anchor-link"></a>
+        <a id="prompt-ia-guiado" class="anchor-link"></a>
+        <a id="simulador-examen" class="anchor-link"></a>
+
+
+        <!-- SECCIÓN 1: GUÍA COMPLETA (Visualmente mejorada) -->
+        <section id="guide-section" class="space-y-8">
+            <!-- Título Principal y Resumen - ACTUALIZADO -->
+            <div class="text-center py-6 bg-white card rounded-xl border border-gray-200">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-2">
+                    Certificación Educador Gemini
+                </h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Asciende al siguiente nivel: domina la IA en el entorno educativo.
+                </p>
+                <!-- Texto corregido (paráfrasis) -->
+                <p class="text-sm text-gray-500 mt-2 max-w-4xl mx-auto px-4">
+                    Esta certificación valida tu capacidad como educador para aplicar las herramientas de Inteligencia Artificial (IA) de Google, como Gemini y NotebookLM, de forma efectiva y con principios éticos sólidos en el entorno de aprendizaje.
+                </p>
+            </div>
+
+            <!-- Beneficios Clave - TÍTULO Y TEXTOS ACTUALIZADOS -->
+            <div class="card bg-white p-6 rounded-xl border border-gray-200">
+                <h2 class="text-2xl font-bold mb-6 text-gray-700 text-center">¿Para qué certificarte?</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Impacto Profesional -->
+                    <div class="text-center p-4 rounded-xl border border-blue-200 bg-blue-50/70 hover:shadow-lg transition">
+                        <span class="text-4xl text-blue-600 mb-2 block">🎓</span>
+                        <h3 class="font-bold text-lg mb-1 text-gray-800">Impulso profesional</h3>
+                        <p class="text-sm text-gray-600">Obtén una certificación reconocida que demuestra tu liderazgo en la integración de tecnología educativa de vanguardia.</p>
+                    </div>
+                    <!-- Eficiencia y Ahorro de Tiempo -->
+                    <div class="text-center p-4 rounded-xl border border-green-200 bg-green-50/70 hover:shadow-lg transition">
+                        <span class="text-4xl text-green-600 mb-2 block">✅</span>
+                        <h3 class="font-bold text-lg mb-1 text-gray-800">Dominio de la eficiencia</h3>
+                        <p class="text-sm text-gray-600">Aprende a usar la IA para automatizar tareas administrativas, liberando tiempo para enfocarte en la enseñanza personalizada.</p>
+                    </div>
+                    <!-- Liderazgo Ético -->
+                    <div class="text-center p-4 rounded-xl border border-red-200 bg-red-50/70 hover:shadow-lg transition">
+                        <span class="text-4xl text-red-600 mb-2 block">🚀</span>
+                        <h3 class="font-bold text-lg mb-1 text-gray-800">Referente ético en IA</h3>
+                        <p class="text-sm text-gray-600">Adquiere las competencias para guiar a tus estudiantes en el uso responsable, crítico y ético de las herramientas de Inteligencia Artificial.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detalles clave del examen -->
+            <div class="card bg-white p-6 rounded-xl border border-gray-200">
+                <h2 class="text-2xl font-bold mb-6 text-gray-700 text-center">Detalles clave del examen</h2>
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 text-center">
+                    <!-- 37 Preguntas -->
+                    <div class="p-3 bg-gray-50 rounded-xl border border-gray-300">
+                        <span class="text-2xl text-gray-700 font-bold block mb-1">37 Preguntas</span>
+                        <p class="text-xs text-gray-500">Opción múltiple y verdadero/falso.</p>
+                    </div>
+                    <!-- Sin límite de tiempo -->
+                    <div class="p-3 bg-gray-50 rounded-xl border border-gray-300">
+                        <span class="text-2xl text-gray-700 font-bold block mb-1">Sin límite de tiempo</span>
+                        <p class="text-xs text-gray-500">Trabaja a tu propio ritmo. (Máx. 14 días)</p>
+                    </div>
+                    <!-- 80% para aprobar -->
+                    <div class="p-3 bg-green-100 rounded-xl border border-green-400">
+                        <span class="text-2xl text-green-600 font-bold block mb-1">80% para aprobar</span>
+                        <p class="text-xs text-gray-700">Obtén la puntuación necesaria para demostrar tu competencia.</p>
+                    </div>
+                    <!-- Gratuito -->
+                    <div class="p-3 bg-blue-100 rounded-xl border border-blue-400">
+                        <span class="text-2xl text-blue-600 font-bold block mb-1">¡Gratuito!</span>
+                        <p class="text-xs text-gray-700">El examen es gratuito, solo necesitas una cuenta de Google.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Desglose del contenido del examen (Gráfico y lista visual) -->
+            <div class="card bg-white p-6 rounded-xl border border-gray-200">
+                <h2 class="text-2xl font-bold mb-6 text-gray-700 text-center">Desglose del contenido del examen</h2>
+                <p class="text-center text-sm text-gray-500 mb-8">El examen evalúa tu competencia en cinco áreas clave, con la mayor parte centrada en la **"Integración en el aula"**.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+
+                    <!-- Columna Izquierda: Gráfico Donut y Leyenda -->
+                    <div class="flex flex-col items-center">
+                        <div class="donut-chart-container mb-6">
+                            <!-- El estilo CSS maneja el gráfico donut -->
+                        </div>
+
+                        <!-- Leyenda del Gráfico -->
+                        <div class="text-sm space-y-1 w-full max-w-xs">
+                            <div class="flex items-center space-x-2">
+                                <span class="w-3 h-3 rounded-full bg-red-600 flex-shrink-0" style="background-color: #EA4335;"></span>
+                                <p class="text-gray-700">Fundamentos de IA y Gemini (15%)</p>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="w-3 h-3 rounded-full bg-yellow-500 flex-shrink-0" style="background-color: #FBBC05;"></span>
+                                <p class="text-gray-700">Ingeniería de prompts (20%)</p>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="w-3 h-3 rounded-full bg-green-600 flex-shrink-0" style="background-color: #34A853;"></span>
+                                <p class="text-gray-700">Integración en el aula (35%)</p>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="w-3 h-3 rounded-full bg-blue-600 flex-shrink-0" style="background-color: #4285F4;"></span>
+                                <p class="text-gray-700">IA responsable y ética (15%)</p>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="w-3 h-3 rounded-full bg-blue-800 flex-shrink-0" style="background-color: #1a73e8;"></span>
+                                <p class="text-gray-700">Herramientas avanzadas (15%)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Columna Derecha: Lista con Iconos -->
+                    <div class="space-y-6">
+                        <!-- 1. Fundamentos de IA y Gemini (15%) -->
+                        <div class="flex space-x-3 items-start">
+                            <span class="text-2xl color-1 flex-shrink-0">💡</span>
+                            <div class="text-sm">
+                                <h3 class="font-bold text-base color-1">Fundamentos de IA y Gemini (15%)</h3>
+                                <p class="text-gray-700">Comprende los conceptos básicos de la IA generativa, los LLM y el funcionamiento de Gemini.</p>
+                            </div>
+                        </div>
+
+                        <!-- 2. Ingeniería de prompts (20%) -->
+                        <div class="flex space-x-3 items-start">
+                            <span class="text-2xl color-2 flex-shrink-0">🔧</span>
+                            <div class="text-sm">
+                                <h3 class="font-bold text-base color-2">Ingeniería de prompts (20%)</h3>
+                                <p class="text-gray-700">Domina el arte de crear instrucciones precisas y detalladas para obtener las mejores respuestas.</p>
+                            </div>
+                        </div>
+
+                        <!-- 3. Integración en el aula (35%) -->
+                        <div class="flex space-x-3 items-start">
+                            <span class="text-2xl color-3 flex-shrink-0">🍎</span>
+                            <div class="text-sm">
+                                <h3 class="font-bold text-base color-3">Integración en el aula (35%)</h3>
+                                <p class="text-gray-700">Aplica Gemini para crear planes de clase, rúbricas y actividades educativas efectivas.</p>
+                            </div>
+                        </div>
+
+                        <!-- 4. IA responsable y ética (15%) -->
+                        <div class="flex space-x-3 items-start">
+                            <span class="text-2xl color-4 flex-shrink-0">🛡️</span>
+                            <div class="text-sm">
+                                <h3 class="font-bold text-base color-4">IA responsable y ética (15%)</h3>
+                                <p class="text-gray-700">Identifica y aborda el sesgo, las alucinaciones y el uso ético de la IA en la educación.</p>
+                            </div>
+                        </div>
+
+                        <!-- 5. Herramientas avanzadas (15%) -->
+                        <div class="flex space-x-3 items-start">
+                            <span class="text-2xl color-5 flex-shrink-0">🚀</span>
+                            <div class="text-sm">
+                                <h3 class="font-bold text-base color-5">Herramientas avanzadas (15%)</h3>
+                                <p class="text-gray-700">Utiliza herramientas como NotebookLM y Gems para tareas específicas y personalizadas.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Consejos y recursos para la preparación - CON ENLACES ACTUALIZADOS -->
+            <div class="card bg-white p-6 rounded-xl border border-gray-200">
+                <h2 class="text-2xl font-bold mb-6 text-gray-700 text-center">Consejos y recursos para la preparación</h2>
+                <div class="space-y-4">
+                    <!-- Fila 1: Guía Oficial, Curso IA Generativa, Introducción IA -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <!-- Guía Oficial -->
+                        <div class="p-4 rounded-xl border border-gray-300 bg-gray-50 hover:bg-gray-100 transition">
+                            <span class="text-4xl text-gray-600 mb-2 block text-center">📖</span>
+                            <h3 class="font-bold text-lg mb-1 text-gray-800 text-center">Guía oficial para el examen</h3>
+                            <p class="text-sm text-gray-600 text-center">Documento clave con los objetivos de aprendizaje.</p>
+                            <div class="text-center mt-2">
+                                <a href="https://services.google.com/fh/files/misc/geminieducatorexamguide.pdf" target="_blank" class="resource-link">Ver recurso</a>
+                            </div>
+                        </div>
+                        <!-- Curso IA Generativa -->
+                        <div class="p-4 rounded-xl border border-gray-300 bg-gray-50 hover:bg-gray-100 transition">
+                            <span class="text-4xl text-yellow-500 mb-2 block text-center">👨‍💻</span>
+                            <h3 class="font-bold text-lg mb-1 text-gray-800 text-center">Curso de IA generativa para educadores</h3>
+                            <p class="text-sm text-gray-600 text-center">Capacitación práctica con Gemini y NotebookLM.</p>
+                            <div class="text-center mt-2">
+                                <a href="https://edu.exceedlms.com/student/path/1787126-generative-ai-for-educators-with-gemini" target="_blank" class="resource-link">Ver curso</a>
+                            </div>
+                        </div>
+                        <!-- Introducción a la IA K12 -->
+                        <div class="p-4 rounded-xl border border-gray-300 bg-gray-50 hover:bg-gray-100 transition">
+                            <span class="text-4xl text-teal-500 mb-2 block text-center">💡</span>
+                            <h3 class="font-bold text-lg mb-1 text-gray-800 text-center">Introducción a la IA de Google en la educación K12</h3>
+                            <p class="text-sm text-gray-600 text-center">Conceptos básicos de IA para el entorno escolar.</p>
+                            <div class="text-center mt-2">
+                                <a href="https://edu.exceedlms.com/student/path/1725537" target="_blank" class="resource-link">Ver curso</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fila 2: Centro de Ayuda, Prompt Guiado, Simulador de Examen -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <!-- Centro de Ayuda -->
+                        <div class="p-4 rounded-xl border border-gray-300 bg-gray-50 hover:bg-gray-100 transition">
+                            <span class="text-4xl text-blue-600 mb-2 block text-center">❓</span>
+                            <h3 class="font-bold text-lg mb-1 text-gray-800 text-center">Centro de ayuda de Google</h3>
+                            <p class="text-sm text-gray-600 text-center">Preguntas frecuentes y soporte oficial sobre la certificación Gemini.</p>
+                            <div class="text-center mt-2">
+                                <a href="https://support.google.com/googleforeducation/answer/16561655?hl=es&ref_topic=16543995&sjid=643293368901295304-NC" target="_blank" class="resource-link">Ver centro de ayuda</a>
+                            </div>
+                        </div>
+                        <!-- Prompt IA Guiado (Enlace interno) -->
+                        <div class="p-4 rounded-xl border border-gray-300 bg-gray-50 hover:bg-gray-100 transition">
+                            <span class="text-4xl text-purple-600 mb-2 block text-center">🤖</span>
+                            <h3 class="font-bold text-lg mb-1 text-gray-800 text-center">Prompt IA Guiado</h3>
+                            <p class="text-sm text-gray-600 text-center">Úsalo en Gemini para un plan de estudio modular y personalizado.</p>
+                            <div class="text-center mt-2">
+                                <a href="javascript:void(0);" onclick="showSection('prompt')" class="resource-link">Ir al prompt</a>
+                            </div>
+                        </div>
+                        <!-- Simulador de Examen (Enlace interno) -->
+                        <div class="p-4 rounded-xl border border-gray-300 bg-gray-50 hover:bg-gray-100 transition">
+                            <span class="text-4xl text-red-600 mb-2 block text-center">📝</span>
+                            <h3 class="font-bold text-lg mb-1 text-gray-800 text-center">Simulador de examen</h3>
+                            <p class="text-sm text-gray-600 text-center">Evalúa tus conocimientos con 20 preguntas clave del examen.</p>
+                            <div class="text-center mt-2">
+                                <a href="javascript:void(0);" onclick="showSection('quiz')" class="resource-link">Ir al simulador</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tu camino hacia la certificación - DISEÑO DE FLUJO LIMPIO Y RESPONSIVO -->
+            <div class="card bg-white p-6 rounded-xl border border-gray-200">
+                <h2 class="text-2xl font-bold mb-6 text-gray-700 text-center">Tu camino hacia la certificación</h2>
+
+                <div class="flow-grid grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+
+                    <!-- Paso 1: Estudia y prepárate -->
+                    <div class="clean-flow-step step-1">
+                        <div class="step-icon-container">
+                            📚
+                        </div>
+                        <div>
+                            <p class="step-number text-gray-900">1. Estudia y prepárate</p>
+                            <p class="text-sm text-gray-600">Utiliza los recursos oficiales y familiarízate con todas las herramientas de IA.</p>
+                        </div>
+                    </div>
+
+                    <!-- Paso 2: Regístrate -->
+                    <div class="clean-flow-step step-2">
+                        <div class="step-icon-container">
+                            📝
+                        </div>
+                        <div>
+                            <p class="step-number text-gray-900">2. Regístrate</p>
+                            <p class="text-sm text-gray-600">Inscríbete en el portal de certificación oficial de Google for Education.</p>
+                        </div>
+                    </div>
+
+                    <!-- Paso 3: Realiza el examen -->
+                    <div class="clean-flow-step step-3">
+                        <div class="step-icon-container">
+                            ⏱️
+                        </div>
+                        <div>
+                            <p class="step-number text-gray-900">3. Realiza el examen</p>
+                            <p class="text-sm text-gray-600">Conéctate al examen en línea y responde a las preguntas a tu propio ritmo.</p>
+                        </div>
+                    </div>
+
+                    <!-- Paso 4: ¡Obtén tu certificación! -->
+                    <div class="clean-flow-step step-4">
+                        <div class="step-icon-container">
+                            🏅
+                        </div>
+                        <div>
+                            <p class="step-number text-gray-900">4. ¡Obtén tu certificación!</p>
+                            <p class="text-sm text-gray-600">Al aprobar, recibirás tu certificado digital oficial para compartir.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EJEMPLO DE CERTIFICADO - SRC DE IMAGEN ACTUALIZADO -->
+            <div class="card bg-white p-6 rounded-xl border border-gray-200 text-center">
+                <h2 class="text-2xl font-bold mb-6 text-gray-700">Ejemplo del Certificado Oficial</h2>
+                <p class="text-sm text-gray-500 mb-4">Así se verá tu acreditación digital de Educador Certificado Gemini (el nombre y las fechas se ajustarán al momento de tu examen).</p>
+                <div class="flex justify-center max-w-lg mx-auto">
+                    <!-- URL EXTERNA APLICADA AQUÍ -->
+                    <a href="https://ibb.co/21zBRJb2"><img src="https://i.ibb.co/9kxjBPMX/Google-Certification.png" alt="Certificado de Educador Certificado Gemini" class="w-full h-auto rounded-lg shadow-xl border border-gray-300" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Imagen+Certificado+No+Disponible';"></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: PROMPT DE APRENDIZAJE GUIADO (Orden correcto) -->
+        <section id="prompt-section" class="hidden">
+            <div class="card bg-white p-6 rounded-xl space-y-4 border border-gray-200">
+                <h2 class="text-2xl sm:text-3xl font-bold mb-4 border-b pb-2 text-gray-700">Prompt para Aprendizaje Guiado en Gemini</h2>
+                <p class="text-gray-600 mb-4">Utiliza este prompt optimizado en Gemini para que actúe como tu entrenador personal y te guíe a través de los temas del examen con un diagnóstico y sesiones modulares interactivas. **Copia todo el texto del recuadro.**</p>
+
+                <div class="bg-gray-100 p-4 rounded-xl border border-blue-400 relative">
+                    <pre id="guided-prompt" class="whitespace-pre-wrap text-sm text-gray-700 overflow-auto">Actúa como mi **Guía de Preparación y Entrenador de Examen** para la certificación **Educador Certificado Gemini de Google for Education**.
+
+Mi objetivo es dominar los tres bloques temáticos del examen: **Fundamentos de la IA Generativa, Implementación Práctica en la Educación, y Uso Responsable y Ético de la IA**.
+
+Quiero que la preparación se realice de forma **interactiva y modular**.
+
+### **Estructura del Aprendizaje Guiado:**
+
+1.  **Diagnóstico Inicial:** Comienza haciéndome 5 preguntas de opción múltiple (similares a las del examen) que cubran los tres bloques para evaluar mi nivel de conocimiento.
+2.  **Sesiones Modulares:** Basado en mis resultados, enfoca el contenido. Cada sesión debe incluir:
+    * Una **explicación concisa** del concepto clave.
+    * Ejemplos de **Prompts de alta calidad** para su aplicación en el aula (ej. diferenciación de contenidos).
+    * Un **Escenario Práctico** para que yo lo resuelva (ej. "Tienes que mitigar el sesgo en un borrador generado por IA, ¿cómo lo harías?").
+3.  **Revisión Final:** Al terminar los módulos, administra un **simulacro de examen final** de 10 preguntas.
+
+### **Instrucción de Inicio:**
+
+Comienza con el **Diagnóstico Inicial** y no me des las respuestas. Dime al final del diagnóstico cuántas acerté y sugiere el primer módulo de estudio.</pre>
+                    <!-- Botón corregido con la función copyPrompt() -->
+                    <button class="absolute top-2 right-2 px-3 py-1 bg-white border border-gray-300 text-xs text-gray-700 rounded-md hover:bg-gray-200 transition duration-150" onclick="copyPrompt()">Copiar Prompt</button>
+                </div>
+                <p id="copy-message" class="text-sm text-green-600 hidden mt-2">¡Prompt copiado al portapapeles! Ya puedes pegarlo en Gemini.</p>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 3: SIMULACRO DE EXAMEN (Orden correcto) -->
+        <section id="quiz-section" class="hidden">
+            <div class="card bg-white p-6 rounded-xl space-y-6 border border-gray-200">
+                <h2 class="text-2xl sm:text-3xl font-bold mb-4 border-b pb-2 text-gray-700">Simulacro de Examen (20 Preguntas)</h2>
+                <p class="text-gray-600 italic">Evalúa tus conocimientos sobre los fundamentos, la implementación y la ética de la IA en la educación.</p>
+
+                <div id="quiz-container">
+                    <!-- Las preguntas se inyectarán aquí -->
+                </div>
+
+                <div id="quiz-navigation" class="flex justify-between mt-6">
+                    <button id="prev-btn" class="px-4 py-2 bg-gray-300 text-gray-800 rounded-lg transition duration-150 ease-in-out hover:bg-gray-400 disabled:opacity-50" disabled onclick="prevQuestion()">Anterior</button>
+                    <button id="next-btn" class="px-4 py-2 gemini-blue text-white rounded-lg transition duration-150 ease-in-out hover:bg-blue-600 disabled:opacity-50" onclick="nextQuestion()">Siguiente</button>
+                    <button id="submit-btn" class="px-4 py-2 gemini-green text-white rounded-lg transition duration-150 ease-in-out hover:bg-green-600 hidden" onclick="showResults()">Ver Resultados</button>
+                </div>
+
+                <div id="results-container" class="mt-8 pt-4 border-t border-gray-200 hidden">
+                    <h3 class="text-2xl font-bold text-gray-700 mb-4">Tu Resultado: <span id="score-display"></span></h3>
+                    <div id="review-container" class="space-y-6">
+                        <!-- La revisión se inyectará aquí -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Solicitado - AHORA EN UNA SOLA LÍNEA -->
+    <footer class="bg-gray-800 text-white p-4 mt-12">
+        <div class="max-w-4xl mx-auto text-center text-sm flex items-center justify-center space-x-3">
+            <span>Sitio web creado con <a href="https://gemini.google.com/" target="_blank" class="text-blue-400 hover:text-blue-300 font-medium transition duration-150">Gemini</a></span>
+            <span class="flex items-center space-x-1">
+                <span>por Erick Martínez</span>
+                <a href="https://www.linkedin.com/in/erickmartinezc/" target="_blank" aria-label="LinkedIn de Erick Martínez" class="text-white hover:text-blue-400 transition duration-150">
+                    <!-- LinkedIn SVG Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.328-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                </a>
+            </span>
+        </div>
+    </footer>
+
+    <script>
+        // Datos del simulacro de examen (adaptados del archivo proporcionado)
+        const quizData = [
+            {
+                question: "¿Cuál es la característica principal que distingue a la IA generativa (como Gemini) de la IA tradicional (como un motor de búsqueda clásico)?",
+                options: [
+                    { text: "La IA generativa solo clasifica y analiza información existente.", isCorrect: false, rationale: "La clasificación y el análisis son funciones de la IA tradicional o predictiva; la generativa va más allá." },
+                    { text: "La IA generativa puede crear contenido nuevo y original, como texto, imágenes o código.", isCorrect: true, rationale: "La esencia de la IA generativa es la capacidad de producir resultados creativos y originales que no existían previamente." },
+                    { text: "La IA generativa requiere una conexión a Internet, mientras que la tradicional no.", isCorrect: false, rationale: "Ambos tipos de IA pueden requerir conectividad, esta no es la diferencia definitoria entre ellas." },
+                    { text: "La IA generativa tiene un costo, y la IA tradicional es gratuita.", isCorrect: false, rationale: "El modelo de costos no define la tecnología, ya que hay herramientas gratuitas y de pago para ambos tipos." }
+                ]
+            },
+            {
+                question: "Un educador desea ahorrar tiempo creando un borrador de un plan de clase basado en un documento curricular extenso que ya tiene en su Google Drive. ¿Cuál es la herramienta de Google AI más adecuada para este propósito, dado que puede analizar fuentes cargadas por el usuario?",
+                options: [
+                    { text: "Google Classroom", isCorrect: false, rationale: "Google Classroom es una plataforma de gestión del aprendizaje y no una herramienta de IA para analizar documentos." },
+                    { text: "NotebookLM", isCorrect: true, rationale: "NotebookLM está diseñado específicamente para analizar, resumir y generar ideas a partir de documentos fuente cargados por el usuario." },
+                    { text: "Google Meet", isCorrect: false, rationale: "Google Meet es una herramienta de videoconferencia; no tiene funcionalidad de IA para análisis de documentos." },
+                    { text: "Gemini Advanced", isCorrect: false, rationale: "Aunque Gemini Advanced es potente, NotebookLM es la herramienta de Google AI especializada en trabajar directamente con las fuentes documentales del usuario." }
+                ]
+            },
+            {
+                question: "¿Cuál es el elemento más crucial al elaborar un 'prompt' (petición) efectivo para Gemini con el objetivo de diferenciar una actividad de aprendizaje?",
+                options: [
+                    { text: "Solicitar la respuesta en un idioma diferente al del texto fuente.", isCorrect: false, rationale: "Cambiar el idioma es una función útil, pero no es el elemento más crucial para la diferenciación pedagógica." },
+                    { text: "Incluir el número exacto de palabras o párrafos que debe tener el resultado.", isCorrect: false, rationale: "La longitud ayuda en la estructura, pero no garantiza la adaptación al estudiante." },
+                    { text: "Especificar la audiencia, el nivel de lectura y el objetivo de aprendizaje de la actividad.", isCorrect: true, rationale: "Para diferenciar, el prompt debe definir el contexto pedagógico y las necesidades específicas de la audiencia o nivel." },
+                    { text: "Utilizar solo jerga técnica y términos complejos de la materia.", isCorrect: false, rationale: "Esto puede confundir a la IA y no contribuye a un resultado adaptado a un nivel más simple si ese es el objetivo." }
+                ]
+            },
+            {
+                question: "En el contexto de la IA generativa, ¿a qué se refiere el término 'alucinación'?",
+                options: [
+                    { text: "A la capacidad de la IA para crear imágenes o gráficos abstractos.", isCorrect: false, rationale: "Aunque la IA puede crear imágenes, 'alucinación' es un término técnico para errores en la generación de texto." },
+                    { text: "A la generación de información falsa, engañosa o inventada que se presenta como un hecho.", isCorrect: true, rationale: "Las alucinaciones son respuestas que no están basadas en los datos de entrenamiento pero se presentan con autoridad." },
+                    { text: "A la interfaz de usuario que parece animada o interactiva.", isCorrect: false, rationale: "Esto describe el diseño de la interfaz y no un riesgo o error de la IA." },
+                    { text: "Al proceso de entrenamiento de la IA con grandes volúmenes de datos.", isCorrect: false, rationale: "Este proceso se conoce como 'entrenamiento del modelo' y no como alucinación." }
+                ]
+            },
+            {
+                question: "Un educador detecta que el material generado por Gemini para un tema de historia incluye referencias culturales que favorecen a una región en específico, ignorando otras. ¿Qué riesgo de la IA está observando el educador?",
+                options: [
+                    { text: "Dependencia excesiva", isCorrect: false, rationale: "La dependencia se refiere al uso constante de la IA, no a la calidad del contenido generado." },
+                    { text: "Alucinación", isCorrect: false, rationale: "Una alucinación es información falsa; este caso se relaciona con una representación injusta o incompleta." },
+                    { text: "Sesgo algorítmico", isCorrect: true, rationale: "El sesgo ocurre cuando el modelo de IA reproduce prejuicios o representaciones injustas presentes en sus datos de entrenamiento." },
+                    { text: "Plagio", isCorrect: false, rationale: "El plagio es la copia de trabajo ajeno; esto es un problema de equidad y representación." }
+                ]
+            },
+            {
+                question: "Para usar la IA de manera responsable y evitar el plagio, un educador debe enseñar a sus estudiantes a practicar la 'metacognición' al revisar las respuestas de Gemini. ¿Qué implica esto?",
+                options: [
+                    { text: "Entregar la respuesta de Gemini sin modificaciones para ver si el maestro la acepta.", isCorrect: false, rationale: "Esto va en contra del uso responsable y constituye una entrega sin pensamiento crítico." },
+                    { text: "Citar el producto de la IA con un formato estandarizado y verificar la fuente de cada afirmación.", isCorrect: false, rationale: "La citación es una parte de la responsabilidad, pero la metacognición implica la reflexión sobre la respuesta misma." },
+                    { text: "Preguntarse: '¿Puedo confiar en esta respuesta?', '¿Debo comprobarla?', y '¿Esta respuesta es mía o de la máquina?'.", isCorrect: true, rationale: "La metacognición es el proceso de 'pensar sobre el propio pensamiento' y es clave para el uso crítico de la IA." },
+                    { text: "Usar la IA solo para traducir textos y no para generar contenido original.", isCorrect: false, rationale: "La restricción no fomenta el pensamiento crítico sobre el uso de la IA en otros contextos." }
+                ]
+            },
+            {
+                question: "Un educador quiere usar Gemini para diferenciar una actividad de lectura para un estudiante que requiere un apoyo adicional. ¿Cuál de las siguientes es la acción más efectiva basada en un prompt?",
+                options: [
+                    { text: "Pedir que el texto se reescriba en un estilo más formal para aumentar el vocabulario.", isCorrect: false, rationale: "Un estilo más formal puede aumentar la dificultad en lugar de apoyar a un estudiante con necesidades adicionales." },
+                    { text: "Solicitar que el texto se resuma en cinco puntos clave sin cambiar el nivel de lectura.", isCorrect: false, rationale: "El resumen ayuda, pero no aborda directamente la necesidad de un nivel de lectura diferente." },
+                    { text: "Pedir a Gemini que simplifique la estructura de las oraciones y reescriba el texto a un nivel de lectura de dos grados menos.", isCorrect: true, rationale: "Esta es una aplicación directa y efectiva de la diferenciación basada en el nivel de complejidad del lenguaje." },
+                    { text: "Solicitar a Gemini que genere 10 preguntas de opción múltiple sobre el texto.", isCorrect: false, rationale: "Esto crea una evaluación, pero no adapta el contenido original al nivel del estudiante." }
+                ]
+            },
+            {
+                question: "Para optimizar la retroalimentación, un profesor quiere generar una rúbrica analítica y detallada para un proyecto de investigación. ¿Qué componente del prompt es fundamental para asegurar la calidad de la rúbrica generada por Gemini?",
+                options: [
+                    { text: "Solicitar que la rúbrica se entregue en un formato de hoja de cálculo de Google.", isCorrect: false, rationale: "El formato es útil para la organización, pero no para la calidad del contenido evaluativo." },
+                    { text: "Especificar el número de puntos totales y el nombre del curso.", isCorrect: false, rationale: "Estos son datos administrativos; no definen la calidad de los criterios de evaluación." },
+                    { text: "Definir los criterios de evaluación específicos y los niveles de desempeño esperados (ej. 'Experto', 'En desarrollo').", isCorrect: true, rationale: "Los criterios y niveles de desempeño son la base de toda rúbrica, asegurando que sea relevante y útil." },
+                    { text: "Pedir una lista de posibles recursos que los estudiantes puedan usar en el proyecto.", isCorrect: false, rationale: "Esto es útil para el proyecto en general, pero no para la generación de la rúbrica en sí." }
+                ]
+            },
+            {
+                question: "Un profesor utiliza Gemini para generar ideas para una actividad creativa. Antes de presentar esta actividad a sus estudiantes, ¿cuál es el paso de uso responsable que **debe** realizar?",
+                options: [
+                    { text: "Generar una segunda versión de la actividad usando una IA diferente.", isCorrect: false, rationale: "Esto es una buena práctica de verificación, pero no es el paso fundamental de responsabilidad." },
+                    { text: "Incluir el prompt exacto que usó en las instrucciones para los estudiantes.", isCorrect: false, rationale: "La transparencia es buena, pero el paso crucial es la revisión y adaptación pedagógica." },
+                    { text: "Revisar el contenido para asegurar su precisión fáctica, relevancia pedagógica y alineación con los objetivos de aprendizaje.", isCorrect: true, rationale: "El educador es el responsable final del contenido y debe aplicar su juicio profesional antes de usarlo en el aula." },
+                    { text: "Pedir a Gemini que cite automáticamente la fuente de la idea.", isCorrect: false, rationale: "La citación se aplica a la información; la revisión pedagógica es el primer paso para las actividades." }
+                ]
+            },
+            {
+                question: "En el contexto de la productividad administrativa, ¿qué acción ilustra mejor cómo Gemini en Google Workspace (ej. Gmail) puede optimizar el tiempo del educador?",
+                options: [
+                    { text: "Usar Gemini para calificar automáticamente los ensayos de los estudiantes.", isCorrect: false, rationale: "La calificación de ensayos complejos por IA aún requiere mucha supervisión y no es el uso más común de productividad en Workspace." },
+                    { text: "Pedir a Gemini que redacte un correo electrónico a los padres, resumiendo el progreso de la clase y sugiriendo actividades de apoyo personalizadas.", isCorrect: true, rationale: "Redactar borradores de comunicaciones personalizadas y repetitivas es una de las mayores ventajas de Gemini para el ahorro de tiempo administrativo." },
+                    { text: "Usar Gemini para programar automáticamente una reunión en Google Calendar con todo el personal.", isCorrect: false, rationale: "La programación es una función de Calendar, no el beneficio principal de la integración de Gemini en la redacción de correos." },
+                    { text: "Solicitar a Gemini que cree un nuevo sitio web para el aula desde cero.", isCorrect: false, rationale: "La creación de sitios web está fuera del alcance de la integración de Gemini en Gmail o Docs." }
+                ]
+            },
+            {
+                question: "Para fomentar la alfabetización en IA en el aula, ¿cuál es la mejor manera de abordar la 'transparencia' con los estudiantes sobre el uso de la IA?",
+                options: [
+                    { text: "Minimizar la discusión sobre la IA y solo usarla para tareas administrativas.", isCorrect: false, rationale: "Ocultar su uso no fomenta la alfabetización ni la transparencia." },
+                    { text: "Usar la IA en secreto para generar materiales y presentarlos como si fueran propios.", isCorrect: false, rationale: "Esto es contrario a los principios de uso ético y transparencia en la educación." },
+                    { text: "Ser claro con los estudiantes sobre cuándo y cómo el educador o ellos mismos están usando la IA como una herramienta de apoyo.", isCorrect: true, rationale: "La transparencia requiere ser abierto sobre el uso de la IA para normalizarla como una herramienta de colaboración." },
+                    { text: "Insistir en que la IA es perfecta y que no es necesario verificar sus respuestas.", isCorrect: false, rationale: "Esto ignora los riesgos de las alucinaciones y el sesgo, y no fomenta el pensamiento crítico." }
+                ]
+            },
+            {
+                question: "Un profesor usa NotebookLM para analizar 10 artículos de investigación. ¿Qué función de NotebookLM le permite identificar rápidamente las similitudes y diferencias entre los argumentos de los diferentes artículos sin leer cada uno completamente?",
+                options: [
+                    { text: "La herramienta de traducción automática del documento.", isCorrect: false, rationale: "La traducción es útil para el idioma, no para la síntesis de contenido a través de múltiples fuentes." },
+                    { text: "La capacidad de hacer preguntas directamente a los documentos cargados y recibir una respuesta sintetizada basada en todas las fuentes.", isCorrect: true, rationale: "Esta es la función central de NotebookLM, que permite la síntesis de información de diversas fuentes." },
+                    { text: "El límite de tiempo para usar cada fuente de forma individual.", isCorrect: false, rationale: "NotebookLM no impone un límite de tiempo por fuente, y esto no ayuda en el análisis comparativo." },
+                    { text: "La función para compartir las fuentes con otros educadores sin control de acceso.", isCorrect: false, rationale: "La función para compartir es de colaboración, no de análisis de contenido." }
+                ]
+            },
+            {
+                question: "¿Cuál es un riesgo ético fundamental relacionado con la privacidad que un educador debe considerar al usar IA generativa en el aula?",
+                options: [
+                    { text: "Que la IA pueda cometer errores gramaticales en las respuestas.", isCorrect: false, rationale: "Esto es un problema de calidad (alucinación), no un riesgo ético relacionado con la privacidad." },
+                    { text: "El riesgo de que la información personal identificable (IPI) de los estudiantes se cargue y se use para entrenar el modelo de IA.", isCorrect: true, rationale: "Proteger la IPI y asegurar que los datos de los estudiantes no se utilicen indebidamente para el entrenamiento es una prioridad ética y legal." },
+                    { text: "La posibilidad de que la IA se quede sin batería o se desconecte durante su uso.", isCorrect: false, rationale: "Esto es un problema técnico, no un riesgo de privacidad de datos." },
+                    { text: "El hecho de que la IA no pueda generar imágenes fotorrealistas.", isCorrect: false, rationale: "Esto es una limitación de la capacidad, no un problema ético de privacidad." }
+                ]
+            },
+            {
+                question: "Un profesor utiliza un prompt para generar un cuestionario de 10 preguntas. Para que el resultado sea preciso y adaptado, ¿qué debe incluir en su prompt además del tema y el número de preguntas?",
+                options: [
+                    { text: "El clima actual y el deporte favorito del profesor.", isCorrect: false, rationale: "Estos datos no son relevantes para la calidad o el contenido del cuestionario." },
+                    { text: "La hora del día y el número de alumnos en la clase.", isCorrect: false, rationale: "Estos son detalles logísticos que no afectan la calidad de las preguntas." },
+                    { text: "El **nivel cognitivo de las preguntas** (ej. 'aplicación' o 'análisis') y el **formato de la respuesta** (ej. 'incluye la clave de respuestas').", isCorrect: true, rationale: "Definir el rigor cognitivo y la estructura de la respuesta asegura que el cuestionario sea pedagógicamente útil y completo." },
+                    { text: "Una historia personal sobre por qué el tema es importante.", isCorrect: false, rationale: "El contexto personal puede ser inspirador, pero no es esencial para el rigor de la tarea de IA." }
+                ]
+            },
+            {
+                question: "Para desarrollar un plan de estudios o una unidad didáctica con Gemini, ¿cuál de los siguientes pasos se alinea mejor con la metodología de Prompt Engineering?",
+                options: [
+                    { text: "Escribir un prompt de una sola línea pidiendo el plan completo y aceptando el primer borrador.", isCorrect: false, rationale: "Los borradores iniciales casi siempre requieren refinamiento y ajuste, lo que requiere prompts de seguimiento." },
+                    { text: "Usar prompts de refinamiento para iterar sobre el borrador inicial, ajustando el formato, la duración o el enfoque pedagógico.", isCorrect: true, rationale: "La iteración y el refinamiento son pasos esenciales para pasar de un prompt básico a un producto de alta calidad." },
+                    { text: "Pedir a Gemini que busque en Internet planes de estudios ya hechos y copiarlos.", isCorrect: false, rationale: "Esto no es generar contenido original y podría ser plagio, además de no personalizar el plan." },
+                    { text: "Evitar incluir el estándar curricular o los objetivos de aprendizaje por ser demasiado restrictivos.", isCorrect: false, rationale: "Los objetivos de aprendizaje son cruciales para el rigor pedagógico del resultado." }
+                ]
+            },
+            {
+                question: "La dependencia de la IA es un riesgo real. ¿Qué estrategia promueve el Educador Certificado Gemini para que los estudiantes usen la IA de manera crítica y no se vuelvan dependientes?",
+                options: [
+                    { text: "Limitar el acceso a Gemini a solo 5 minutos por semana.", isCorrect: false, rationale: "Las limitaciones de tiempo no enseñan el pensamiento crítico, solo restringen el acceso a una herramienta." },
+                    { text: "Diseñar tareas que requieran la **síntesis** y la **aplicación del juicio humano** más allá de lo que la IA puede producir.", isCorrect: true, rationale: "Las tareas que exigen pensamiento original y la aplicación de contexto son las que limitan la dependencia." },
+                    { text: "Requerir que todas las tareas se realicen sin el uso de la IA, incluso en casa.", isCorrect: false, rationale: "Esto ignora el uso ético y la realidad de la tecnología fuera del aula." },
+                    { text: "Permitir que la IA haga el trabajo más difícil, reservando el trabajo fácil para los estudiantes.", isCorrect: false, rationale: "Esto no desarrolla el pensamiento crítico ni la habilidad de resolver problemas complejos." }
+                ]
+            },
+            {
+                question: "Un educador debe generar un resumen de un texto de 500 palabras, pero quiere que el tono sea adecuado para un público de educación superior. ¿Qué parte del prompt debe modificar para lograr este resultado?",
+                options: [
+                    { text: "La fuente de datos.", isCorrect: false, rationale: "La fuente de datos solo afecta el contenido; el tono es una instrucción de estilo." },
+                    { text: "La extensión de la respuesta.", isCorrect: false, rationale: "La extensión controla el número de palabras, no el estilo o tono." },
+                    { text: "La **instrucción de estilo y el rol** (ej. 'Actúa como un académico' y 'Usa un tono formal y evaluativo').", isCorrect: true, rationale: "Especificar el rol y el tono son instrucciones de estilo cruciales para adaptar la voz de la IA." },
+                    { text: "El idioma en que se escribe el resumen.", isCorrect: false, rationale: "El idioma no define el tono, que puede ser formal o informal en cualquier lengua." }
+                ]
+            },
+            {
+                question: "Según las directrices para Educadores Certificados Gemini, ¿cuál es la actitud correcta al presentar los resultados de la IA a los estudiantes?",
+                options: [
+                    { text: "Presentar los resultados como un material terminado e inmutable de la IA.", isCorrect: false, rationale: "Esto ignora el riesgo de alucinaciones y la necesidad de revisión." },
+                    { text: "Presentarlos como un **borrador inicial o un punto de partida** que requiere la revisión crítica y la edición del estudiante.", isCorrect: true, rationale: "La IA debe ser vista como una herramienta de colaboración, siendo la edición y el juicio humano el paso final." },
+                    { text: "Presentarlos como la única fuente de información verdadera y completa sobre el tema.", isCorrect: false, rationale: "La IA no debe ser la única fuente y sus respuestas deben ser verificadas." },
+                    { text: "Presentar solo la parte de la respuesta generada por la IA que el educador considere 'perfecta'.", isCorrect: false, rationale: "La presentación debe ser transparente y el proceso de revisión debe ser visible para los estudiantes." }
+                ]
+            },
+            {
+                question: "¿Cuál es el principal desafío de seguridad que abordará un Educador Certificado Gemini al usar la IA generativa en sus actividades?",
+                options: [
+                    { text: "El reto de conseguir acceso a una computadora con buena conexión a internet.", isCorrect: false, rationale: "Esto es un desafío de infraestructura, no de seguridad intrínseca de la IA." },
+                    { text: "Asegurar que las cuentas de Google Workspace for Education de los estudiantes no sean comprometidas por ciberataques.", isCorrect: false, rationale: "La seguridad de la cuenta es una preocupación general de TI, pero no el principal desafío asociado al contenido de la IA." },
+                    { text: "La necesidad de proteger a los estudiantes de la exposición a contenido inapropiado o dañino generado por la IA.", isCorrect: true, rationale: "Las políticas de seguridad se centran en el filtrado de contenido para proteger a los usuarios jóvenes." },
+                    { text: "La falta de tiempo para integrar la IA en todos los aspectos de la enseñanza.", isCorrect: false, rationale: "Esto es un desafío de gestión del tiempo, no de seguridad." }
+                ]
+            },
+            {
+                question: "Un educador está creando un borrador para un manual de ética de IA para su institución. ¿Qué objetivo de aprendizaje debe incluir para el desarrollo profesional de sus colegas, alineado con la certificación Gemini?",
+                options: [
+                    { text: "Habilidad para instalar nuevo software de gestión de aprendizaje.", isCorrect: false, rationale: "La instalación de software es una habilidad técnica general, no específica de la ética de la IA." },
+                    { text: "Capacidad para **diseñar estrategias activas contra el plagio por IA** y promover la **verificación crítica** de sus resultados.", isCorrect: true, rationale: "Estas son las competencias clave que el Educador Certificado Gemini debe dominar para el uso ético en la práctica." },
+                    { text: "Dominio de la configuración avanzada de Google Cloud Platform.", isCorrect: false, rationale: "Google Cloud es una herramienta distinta a las herramientas de IA generativa para el aula." },
+                    { text: "Conocimiento de la historia completa del desarrollo de la IA desde los años 50.", isCorrect: false, rationale: "Si bien es útil, la aplicación práctica de la ética es más relevante que la historia para un manual institucional." }
+                ]
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let userAnswers = new Array(quizData.length).fill(null);
+        let quizCompleted = false;
+
+        // Función para mostrar la sección correcta
+        function showSection(sectionId) {
+            const sections = ['guide', 'quiz', 'prompt'];
+            sections.forEach(id => {
+                const sectionElement = document.getElementById(`${id}-section`);
+                if (sectionElement) {
+                    sectionElement.classList.add('hidden');
+                }
+                document.getElementById(`nav-${id}`).classList.remove('active');
+            });
+
+            document.getElementById(`${sectionId}-section`).classList.remove('hidden');
+            document.getElementById(`nav-${sectionId}`).classList.add('active');
+
+            if (sectionId === 'quiz') {
+                renderQuestion();
+            }
+        }
+
+        // Función para renderizar la pregunta actual
+        function renderQuestion() {
+            const q = quizData[currentQuestionIndex];
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = `
+                <div class="mb-4">
+                    <p class="text-lg font-bold text-gray-800">Pregunta ${currentQuestionIndex + 1} de ${quizData.length}</p>
+                    <p class="text-xl mt-2 text-gray-700">${q.question}</p>
+                </div>
+                <div id="options-container" class="space-y-3">
+                    ${q.options.map((option, index) => `
+                        <button class="option-button w-full text-left p-4 border border-gray-300 rounded-xl transition duration-150 ease-in-out hover:bg-blue-50 hover:border-blue-400 ${userAnswers[currentQuestionIndex] === index ? 'bg-blue-100 border-blue-600' : 'bg-white'}"
+                            onclick="selectAnswer(${index})"
+                            data-index="${index}"
+                            ${quizCompleted ? 'disabled' : ''}>
+                            ${option.text}
+                        </button>
+                    `).join('')}
+                </div>
+                <div id="rationale-container-${currentQuestionIndex}" class="mt-4 p-4 rounded-lg bg-gray-100 border border-gray-200 hidden">
+                    <!-- Rationale will be shown here after completion -->
+                </div>
+            `;
+            updateNavigationButtons();
+
+            // Si el quiz está completado, mostrar los colores y las justificaciones
+            if (quizCompleted) {
+                markOptionsAfterCompletion();
+            }
+        }
+
+        // Función para seleccionar una respuesta
+        function selectAnswer(index) {
+            if (quizCompleted) return;
+            userAnswers[currentQuestionIndex] = index;
+
+            const options = document.getElementById('options-container').children;
+            Array.from(options).forEach(btn => {
+                btn.classList.remove('bg-blue-100', 'border-blue-600');
+            });
+            options[index].classList.add('bg-blue-100', 'border-blue-600');
+        }
+
+        // Función para actualizar los botones de navegación
+        function updateNavigationButtons() {
+            document.getElementById('prev-btn').disabled = currentQuestionIndex === 0;
+            document.getElementById('next-btn').classList.remove('hidden');
+            document.getElementById('submit-btn').classList.add('hidden');
+
+            if (currentQuestionIndex === quizData.length - 1) {
+                document.getElementById('next-btn').classList.add('hidden');
+                document.getElementById('submit-btn').classList.remove('hidden');
+            }
+        }
+
+        // Función para ir a la pregunta anterior
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                renderQuestion();
+            }
+        }
+
+        // Función para ir a la siguiente pregunta
+        function nextQuestion() {
+            if (currentQuestionIndex < quizData.length - 1) {
+                currentQuestionIndex++;
+                renderQuestion();
+            }
+        }
+
+        // Función para mostrar los resultados
+        function showResults() {
+            if (quizCompleted) return;
+
+            let correctCount = 0;
+            quizCompleted = true;
+
+            quizData.forEach((q, i) => {
+                if (userAnswers[i] !== null && q.options[userAnswers[i]].isCorrect) {
+                    correctCount++;
+                }
+            });
+
+            document.getElementById('score-display').textContent = `${correctCount} / ${quizData.length}`;
+            document.getElementById('results-container').classList.remove('hidden');
+
+            // Ocultar botones de navegación y mostrar la revisión
+            document.getElementById('quiz-navigation').classList.add('hidden');
+            renderReview();
+        }
+
+        // Función para marcar las opciones después de completar el examen
+        function markOptionsAfterCompletion() {
+            const q = quizData[currentQuestionIndex];
+            const options = document.getElementById('options-container').children;
+
+            Array.from(options).forEach((btn, index) => {
+                const isUserSelected = userAnswers[currentQuestionIndex] === index;
+                const isCorrectOption = q.options[index].isCorrect;
+
+                btn.classList.add('disabled');
+                btn.classList.remove('bg-blue-100', 'border-blue-600', 'hover:bg-blue-50', 'hover:border-blue-400');
+
+                if (isCorrectOption) {
+                    btn.classList.add('correct');
+                } else if (isUserSelected && !isCorrectOption) {
+                    btn.classList.add('incorrect');
+                } else {
+                    btn.classList.add('bg-gray-50', 'text-gray-500');
+                }
+            });
+
+            // Mostrar justificación
+            const rationale = q.options.find(opt => opt.isCorrect).rationale;
+            const rationaleContainer = document.getElementById(`rationale-container-${currentQuestionIndex}`);
+            rationaleContainer.innerHTML = `<p class="font-semibold text-gray-800 mb-1">Justificación:</p><p class="text-gray-600">${rationale}</p>`;
+            rationaleContainer.classList.remove('hidden');
+        }
+
+        // Función para renderizar la revisión completa
+        function renderReview() {
+            const reviewContainer = document.getElementById('review-container');
+            let reviewHTML = '';
+
+            quizData.forEach((q, i) => {
+                const userIndex = userAnswers[i];
+                const isCorrect = userIndex !== null && q.options[userIndex].isCorrect;
+                const statusClass = isCorrect ? 'bg-green-100 border-green-400' : (userIndex !== null ? 'bg-red-100 border-red-400' : 'bg-yellow-100 border-yellow-400');
+                const statusText = isCorrect ? '¡Correcto!' : (userIndex !== null ? 'Incorrecto' : 'Sin Responder');
+                const rationale = q.options.find(opt => opt.isCorrect).rationale;
+                const correctOptionText = q.options.find(opt => opt.isCorrect).text;
+
+                reviewHTML += `
+                    <div class="p-4 rounded-xl border-2 ${statusClass}">
+                        <p class="font-bold text-lg mb-1">Pregunta ${i + 1}: ${q.question}</p>
+                        <p class="text-sm font-semibold mb-2">Estado: ${statusText}</p>
+                        ${!isCorrect ? `<p class="text-sm text-red-700">Tu respuesta: ${userIndex !== null ? q.options[userIndex].text : 'N/A'}</p>` : ''}
+                        <p class="text-sm text-green-700 font-semibold">Respuesta Correcta: ${correctOptionText}</p>
+                        <p class="text-sm mt-2 text-gray-700">**Justificación:** ${rationale}</p>
+                    </div>
+                `;
+            });
+            reviewContainer.innerHTML = reviewHTML;
+        }
+
+        // FIX: Función corregida para copiar el prompt utilizando el API de Clipboard
+        function copyPrompt() {
+            const promptText = document.getElementById('guided-prompt').innerText;
+            // Usar navigator.clipboard.writeText para una mejor compatibilidad y experiencia de usuario
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(promptText).then(() => {
+                    const msg = document.getElementById('copy-message');
+                    msg.classList.remove('hidden');
+                    setTimeout(() => msg.classList.add('hidden'), 3000);
+                }).catch(err => {
+                    // Fallback para entornos donde el API de Clipboard está restringido
+                    fallbackCopy(promptText);
+                });
+            } else {
+                fallbackCopy(promptText);
+            }
+        }
+
+        function fallbackCopy(text) {
+             // Usar document.execCommand('copy') como fallback
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = text;
+            tempTextArea.style.position = 'fixed'; // Evita el desplazamiento
+            tempTextArea.style.top = '0';
+            tempTextArea.style.left = '0';
+            tempTextArea.style.opacity = '0'; // Ocultar
+            document.body.appendChild(tempTextArea);
+            tempTextArea.focus();
+            tempTextArea.select();
+
+            try {
+                document.execCommand('copy');
+                const msg = document.getElementById('copy-message');
+                msg.classList.remove('hidden');
+                setTimeout(() => msg.classList.add('hidden'), 3000);
+            } catch (err) {
+                console.error('Error al copiar (fallback): ', err);
+            }
+            document.body.removeChild(tempTextArea);
+        }
+
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', () => {
+            showSection('guide');
+            // Add event listeners for quiz navigation after the content is loaded
+            document.getElementById('prev-btn').addEventListener('click', () => {
+                if (quizCompleted) markOptionsAfterCompletion();
+            });
+            document.getElementById('next-btn').addEventListener('click', () => {
+                if (quizCompleted) markOptionsAfterCompletion();
+            });
+            document.getElementById('submit-btn').addEventListener('click', () => {
+                if (quizCompleted) markOptionsAfterCompletion();
+            });
+        });
+    </script>
+</body>
+</html>
