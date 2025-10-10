@@ -138,6 +138,23 @@
         .step-3 .step-icon-container { background-color: #ec4899; } /* Rosa */
         .step-4 .step-icon-container { background-color: #3b82f6; } /* Azul */
 
+        /* Button style for registration step */
+        .register-btn {
+            background-color: #06b6d4; /* Cian */
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            text-align: center;
+            display: block;
+            margin-top: 0.5rem;
+            transition: background-color 0.2s;
+        }
+        .register-btn:hover {
+            background-color: #0891b2; /* Cian oscuro */
+        }
+
+
         /* Responsive Flow Stack */
         @media (min-width: 768px) {
             .flow-grid {
@@ -435,6 +452,10 @@
                         <div>
                             <p class="step-number text-gray-900">2. Regístrate</p>
                             <p class="text-sm text-gray-600">Inscríbete en el <a href="https://educertifications.google/" target="_blank">de certificación oficial de Google for Education.</a></p>
+                            <!-- BOTÓN AGREGADO -->
+                            <a href="https://educertifications.google/" target="_blank" class="register-btn text-xs hover:bg-blue-600 transition">
+                                Ir al Registro Oficial
+                            </a>
                         </div>
                     </div>
 
