@@ -131,6 +131,31 @@
       "permanent": true
     },
     {
+      "source": "/bmc",
+      "destination": "https://claude.ai/public/artifacts/bdf10b4f-daf2-4325-855c-2c39b7d56340",
+      "permanent": true
+    },
+    {
+      "source": "/foda",
+      "destination": "https://claude.ai/public/artifacts/c0005fad-aa87-4f8b-9dba-09d893e2e30d",
+      "permanent": true
+    },
+    {
+      "source": "/foda_estrategia",
+      "destination": "https://claude.ai/public/artifacts/18e92fd3-1607-4013-9706-fe12070c4239",
+      "permanent": true
+    },
+    {
+      "source": "/smart",
+      "destination": "https://claude.ai/public/artifacts/f4ef326a-62fa-4866-8046-0224bd725787",
+      "permanent": true
+    },
+    {
+      "source": "/kpi",
+      "destination": "https://claude.ai/public/artifacts/0d22084f-abdc-4878-be69-576521002f93",
+      "permanent": true
+    },
+    {
       "source": "/lab_vivo",
       "destination": "https://chingosdeimpacto.notion.site/1e40b0481ff481d6bf4f8d44c3952a8?pvs=105",
       "permanent": true
