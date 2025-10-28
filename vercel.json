@@ -156,6 +156,11 @@
       "permanent": true
     },
     {
+      "source": "/chimbot_stem",
+      "destination": "https://chimbot-stem.lovable.app",
+      "permanent": true
+    },
+    {
       "source": "/lab_vivo",
       "destination": "https://chingosdeimpacto.notion.site/1e40b0481ff481d6bf4f8d44c3952a8?pvs=105",
       "permanent": true
