@@ -161,6 +161,11 @@
       "permanent": true
     },
     {
+      "source": "/matriz_riesgos",
+      "destination": "https://claude.ai/public/artifacts/fe39b467-4ee0-44d6-a1ad-cc5da1cffb30",
+      "permanent": true
+    },
+    {
       "source": "/lab_vivo",
       "destination": "https://chingosdeimpacto.notion.site/1e40b0481ff481d6bf4f8d44c3952a8?pvs=105",
       "permanent": true
