@@ -156,6 +156,11 @@
       "permanent": true
     },
     {
+      "source": "/kpis",
+      "destination": "https://chingosdekpis.lovable.app/",
+      "permanent": true
+    },
+    {
       "source": "/chimbot_stem",
       "destination": "https://chimbot-stem.lovable.app",
       "permanent": true
