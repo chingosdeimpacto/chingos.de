@@ -181,6 +181,16 @@
       "permanent": true
     },
     {
+      "source": "/gamma",
+      "destination": "https://gamma.app/signup?r=hvgsk35j4ihgr9e",
+      "permanent": true
+    },
+    {
+      "source": "/prompt_impacto",
+      "destination": "https://erick-martinez.notion.site/Prompts-Medici-n-impacto-2a8f03b5eacc80bb86c8db200e1c6d50",
+      "permanent": true
+    },
+    {
       "source": "/lab_vivo",
       "destination": "https://chingosdeimpacto.notion.site/1e40b0481ff481d6bf4f8d44c3952a8?pvs=105",
       "permanent": true
