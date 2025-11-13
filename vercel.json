@@ -191,6 +191,11 @@
       "permanent": true
     },
     {
+      "source": "/prompt_dorado",
+      "destination": "https://erick-martinez.notion.site/Prompt-para-el-C-rculo-Dorado-Golden-Circle-2aaf03b5eacc80d08b15e4debc3df1c1?source=copy_link",
+      "permanent": true
+    },
+    {
       "source": "/lab_vivo",
       "destination": "https://chingosdeimpacto.notion.site/1e40b0481ff481d6bf4f8d44c3952a8?pvs=105",
       "permanent": true
