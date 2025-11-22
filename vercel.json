@@ -206,6 +206,11 @@
       "permanent": true
     },
     {
+      "source": "/matriz_trabajo",
+      "destination": "https://lucid.app/lucidspark/39716907-c85b-4072-91a7-2296609e903b/edit?viewport_loc=-7013%2C-5433%2C19490%2C11715%2C0_0&invitationId=inv_08a19f54-a84f-4e28-9b42-64c0e672f936",
+      "permanent": true
+    },
+    {
       "source": "/lab_vivo",
       "destination": "https://chingosdeimpacto.notion.site/1e40b0481ff481d6bf4f8d44c3952a8?pvs=105",
       "permanent": true
