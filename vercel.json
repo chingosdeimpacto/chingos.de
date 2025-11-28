@@ -112,7 +112,7 @@
     },
     {
       "source": "/prompts",
-      "destination": "https://chingos-de-impacto.web.app/prompts",
+      "destination": "https://prompts.chingos.de/",
       "permanent": true
     },
     {
