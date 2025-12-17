@@ -216,6 +216,21 @@
       "permanent": true
     },
     {
+      "source": "/clases_envivo",
+      "destination": "https://chingosdeimpacto.notion.site/C-psulas-de-video-2cc0b0481ff48076afebda1159da893e?source=copy_link",
+      "permanent": true
+    },
+    {
+      "source": "/videos_ia",
+      "destination": "https://portatil.softr.app/bienvenida",
+      "permanent": true
+    },
+    {
+      "source": "/recursos_portatil",
+      "destination": "https://chingosdeimpacto.notion.site/Chingotools-PORTATIL-1ec0b0481ff4807fa55dc8e4b3b86e18?source=copy_link",
+      "permanent": true
+    },
+    {
       "source": "/lab_vivo",
       "destination": "https://chingosdeimpacto.notion.site/1e40b0481ff481d6bf4f8d44c3952a8?pvs=105",
       "permanent": true
