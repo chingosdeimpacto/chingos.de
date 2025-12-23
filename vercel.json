@@ -251,9 +251,20 @@
       "permanent": true
     },
     {
+      "source": "/chimbot",
+      "destination": "https://chimbot.chingos.de",
+      "permanent": true
+    },
+    {
+      "source": "/becas",
+      "destination": "https://www.canva.com/design/DAEsAJDbVNY/ogrnvLaTFGOwPCy5-oXAWg/view?utm_content=DAEsAJDbVNY&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hd7edb483c6",
+      "permanent": true
+    },
+    {
       "source": "/lab_vivo",
       "destination": "https://chingosdeimpacto.notion.site/1e40b0481ff481d6bf4f8d44c3952a8?pvs=105",
       "permanent": true
     }
   ]
 }
+
